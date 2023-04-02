@@ -5,14 +5,14 @@ import { Logo } from "../Logo";
 
 const FooterWrapper = styled.footer`
 	background-color: var(--bg-dark);
-	padding: 70px 0;
+	padding: 50px 0;
 
 	@media (min-width: 1800px){
-		padding: 100px 0;
+		padding: 70px 0;
 	}
 
 	@media (max-width: 480px){
-		padding: 40px 0;
+		padding: 30px 0;
 	}
 `
 const Row = styled.div`

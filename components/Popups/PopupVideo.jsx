@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import styled from 'styled-components'
 import {useSelector, useDispatch} from 'react-redux';
-import {actionOpenPopup} from '../../store/popup/actions-popup';
+import {openPopupTrailer} from '../../store/popup/actions-popup';
 import {Overlay} from '../Overlay';
 import { IoCloseSharp } from "react-icons/io5";
 const VideoPlayer = dynamic(() => import('../Player'));
@@ -58,7 +58,7 @@ const PopupContent = styled.div`
 	width: 100%;
 	position: relative;
 	transition: var(--transition-md);
-	transform: scale(0);
+	transform: translateY(200px);
 	padding-bottom: 30%;
 	min-height: 370px;
 
@@ -72,7 +72,7 @@ const PopupContent = styled.div`
 	};
 
 	${({openPopup}) => openPopup &&`
-			transform: scale(1);
+			transform: translateY(0);
 		`
 	}
 `
@@ -111,14 +111,14 @@ const IconClose = styled(IoCloseSharp)`
 `
 
 const PopupVideo = ({src, provider}) => {
-	const popupOpen = useSelector(state => state.popup);
+	const popupOpen = useSelector(state => state.popup.trailer);
 	const dispatch = useDispatch();
 
 	return (
-		<Popup openPopup={popupOpen} onClick={() => dispatch(actionOpenPopup(!popupOpen))}>
+		<Popup openPopup={popupOpen} onClick={() => dispatch(openPopupTrailer(!popupOpen))}>
 			<PopupBody>
 				<PopupContent openPopup={popupOpen} onClick={(e) => e.stopPropagation()}>
-					<PopupClose onClick={() => dispatch(actionOpenPopup(!popupOpen))}>
+					<PopupClose onClick={() => dispatch(openPopupTrailer(!popupOpen))}>
 						<IconClose size="100%"/>
 					</PopupClose>
 					<VideoPlayer src={src} provider={provider}/>

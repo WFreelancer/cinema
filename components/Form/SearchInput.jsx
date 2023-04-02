@@ -1,22 +1,21 @@
 import styled from 'styled-components';
-import {useData} from '../../store/Context'
 import { IoSearchSharp } from "react-icons/io5";
 
 import {useSelector, useDispatch} from 'react-redux';
-import {actionSearchMenu, setSearch} from '../../store/search/actions-search';
+import {setSearch} from '../../store/search/actions-search';
 
 const MenuSearch = styled.div`
 	display: flex;
 	align-items: center;
 	position: relative;
 	margin-bottom: 30px;
-	height: 43px;
-	background: var(--grey-dark);
-	border-radius: 20px;
+	height: 50px;
+	background: var(--bg-dark);
+	border-radius: 35px;
 
 	@media (min-width: 1800px){
-		height: 55px;
-		border-radius: 30px;
+		height: 65px;
+		border-radius: 40px;
 	}
 `
 
@@ -26,20 +25,19 @@ const Button = styled.button`
 	top: 50%;
 	right: 7px;
 	transform: translateY(-50%);
-	width: 30px;
-	height: 30px;
+	width: 35px;
+	height: 35px;
 	background: var(--white);
 	transition: var(--transition-sm);
 	border-radius: 50%;
 	z-index: 3;
 
 	@media (min-width: 1800px){
-		width: 35px;
-		height: 35px;
+		width: 40px;
+		height: 40px;
 	}
 
 	@media (max-width: 1024px){
-		background: unset;
 		padding: 1px;
 	}
 
@@ -56,7 +54,7 @@ const IoSearch = styled(IoSearchSharp)`
 	border-radius: 50%;
 	width: 25px;
 	height: 25px;
-	padding: 5px;
+	padding: 4px;
 	cursor: pointer;
 	font-size: 1rem;
 	color: var(--grey-dark);
@@ -74,7 +72,6 @@ const IoSearch = styled(IoSearchSharp)`
 	@media (max-width: 767px){
 		font-size: 1.3rem;
 	}
-
 `
 
 const SearchLabel = styled.label`
@@ -95,12 +92,12 @@ const Input = styled.input`
 	height: 100%;
 	background: transparent;
 	padding: 0px 20px;
-	border-radius: 20px;
+	border-radius: 35px;
 	color: var(--color-text);
 	transition: var(--transition-sm);
-
+	font-size: 1rem;
 	@media (min-width: 1800px){
-		border-radius: 30px;
+		border-radius: 40px;
 		font-size: 1.3rem;
 		::-webkit-input-placeholder {
 			font-size: 18px;
@@ -135,18 +132,10 @@ const Input = styled.input`
 	}
 `
 
-const SearchInput = () => {
-	const search = useSelector(state => state.search.searchState);
+const SearchInput = ({searchMovies = Function.prototype}) => {
+	const {searchState} = useSelector(state => state.search);
 	const dispatch = useDispatch();
 
-
-	// useEffect(() => {
-	// 	if (!shopFilterQuery.request.query) {
-	// 	setSearch('')
-	// 	} else {
-	// 	setSearch(shopFilterQuery.request.query)
-	// 	}
-	// }, [shopFilterQuery.request.query])
 
 	return (
 		<MenuSearch>
@@ -154,12 +143,12 @@ const SearchInput = () => {
 				<Input
 					type='search'
 					placeholder='Search movie'
-					value={search}
+					value={searchState}
 					onChange={(event) => dispatch(setSearch(event.target.value))}
-					onKeyDown={(event) => searchByString(event)}
+					onKeyDown={(event) => event.key === 'Enter' && searchMovies(searchState)}
 				/>
 			</SearchLabel> 
-			<Button type="button">
+			<Button type="button" onClick={() => searchMovies(searchState)}>
 				<IoSearch/>
 			</Button>
 		</MenuSearch>

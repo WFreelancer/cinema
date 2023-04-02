@@ -41,6 +41,32 @@ const Button = styled.button`
 		}
 	}
 `
+const ButtonMobile = styled.button`
+	display: none;
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	right: 5px;
+	transform: translateY(-50%);
+	width: 35px;
+	height: 35px;
+	background: var(--bg-dark);
+	transition: var(--transition-sm);
+	border-radius: 50%;
+	z-index: 3;
+
+	@media (max-width: 1024px){
+		display: block;
+	}
+
+	@media (any-hover: hover){
+		:hover{
+			svg{
+				color: var(--bg-pink);
+			}
+		}
+	}
+`
 
 const IoSearch = styled(IoSearchSharp)`
 	border-radius: 50%;
@@ -88,17 +114,21 @@ const SearchLabel = styled.label`
 
 	@media (max-width: 1024px){
 		position: absolute;
-		top: 45px;
+		top: 107px;
 		right: 0px;
 		height: 40px;
 		margin-right: 0;
 		width: 350px;
 		box-shadow: var(--shadow);
-		transform: ${props => !props.active ? `translateY(30px)` : `translateY(0px)`};
-		opacity: ${props => !props.active ? `0` : `1`};
+		transform: ${props => !props.active ? `translateY(-70px)` : `translateY(0px)`};
 		pointer-events: ${props => !props.active ? `none` : `auto`};
 		box-shadow: var(--shadow);
+		z-index: -22222;
 	}
+
+	@media (max-width: 768px){
+		top: 102px;
+	};
 
 	@media (max-width: 480px){
 		width: 300px;
@@ -133,7 +163,7 @@ const Input = styled.input`
 
 	@media (max-width: 1024px){
 		font-size: 16px;
-		border-radius: 3px;
+		border-radius: 0px;
 	}
 
 	:focus{
@@ -156,16 +186,6 @@ const SearchHeader = () => {
 	const dispatch = useDispatch();
 	const router = useRouter();
 
-
-	// const searchAction = () => {
-	// 	dispatch(setPaginationPage(0))
-	// 	dispatch(setFilterQueryType(FILTER_QUERY_TYPE_STRING))
-	// 	dispatch(setSortType(SORT_BY_NAME))
-	// 	dispatch(getProductsPriceRange())
-	// 	dispatch(setFilterQuery(search))
-	// 	dispatch(sendSortAndSearchQuery())
-	// }
-
 	const toggleSearch = async () => {
 		if(search === '') {
 			dispatch(actionSearchMenu(!openSearch));
@@ -174,6 +194,12 @@ const SearchHeader = () => {
 			await router.push('/search');
 		}
 	};
+
+	const goToSearchPage = async () => {
+		if(search !== '') {
+			await router.push('/search');
+		}
+	}
 
 
 	const searchByString = async (event) => {
@@ -192,6 +218,9 @@ const SearchHeader = () => {
 					onChange={(event) => dispatch(setSearch(event.target.value))}
 					onKeyDown={(event) => searchByString(event)}
 				/>
+				<ButtonMobile onClick={goToSearchPage} type="button">
+					<IoSearch/>
+				</ButtonMobile>
 			</SearchLabel> 
 			<Button onClick={toggleSearch} active={openSearch} type="button">
 				<IoSearch/>

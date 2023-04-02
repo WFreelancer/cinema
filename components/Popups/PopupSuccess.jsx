@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import {useData} from '../../store/Context';
 import Image from 'next/image';
 import {Overlay} from '../Overlay';
 import {Button} from '../Button';
@@ -7,8 +6,9 @@ import { IoCloseSharp } from "react-icons/io5";
 import space from '../../public/space.jpg';
 import human from '../../public/human.png';
 import planet from '../../public/planet.png';
-import useWindowSize from '../../helpers/windowSize';
 import Confetti from 'react-confetti';
+import {useSelector, useDispatch} from 'react-redux';
+import {openPopupSuccess} from '../../store/popup/actions-popup';
 
 const Popup = styled.div`
 	position: fixed;
@@ -22,7 +22,7 @@ const Popup = styled.div`
 	overflow-x: hidden;
 	transition: var(--transition-md);
 	pointer-events: none;
-	z-index: 11;
+	z-index: 200;
 
 	::-webkit-scrollbar {
 		display: none;
@@ -66,7 +66,7 @@ const PopupContent = styled.div`
 	padding: 5vh;
 	position: relative;
 	transition: var(--transition-md);
-	transform: scale(0);
+	transform: translateY(100px);
 
 	@media (min-width: 1800px){
 		max-width: 800px;
@@ -78,7 +78,7 @@ const PopupContent = styled.div`
 	}
 
 	${({openPopup}) => openPopup &&`
-			transform: scale(1);
+			transform: translateY(0px);
 		`
 	}
 `
@@ -203,14 +203,14 @@ const PopupImagePlanet = styled.div`
 `
 
 const PopupSuccess = () => {
-	const {messageSuccess, setMessageSuccess} = useData();
-	const { width, height } = useWindowSize()
+	const messageSuccess = useSelector(state => state.popup.messageSuccess);
+	const dispatch = useDispatch();
 
 	return (
-		<Popup openPopup={messageSuccess} onClick={() => setMessageSuccess(!messageSuccess)}>
+		<Popup openPopup={messageSuccess} onClick={() => dispatch(openPopupSuccess(!messageSuccess))}>
 			<PopupBody>
 				<PopupContent openPopup={messageSuccess} onClick={(e) => e.stopPropagation()}>
-					<PopupClose onClick={() => setMessageSuccess(!messageSuccess)}>
+					<PopupClose onClick={() => dispatch(openPopupSuccess(!messageSuccess))}>
 						<IoCloseSharp size="100%"/>
 					</PopupClose>
 					<PopupImage>
@@ -226,7 +226,7 @@ const PopupSuccess = () => {
 					</PopupImage>
 					<PopupTitle>Success</PopupTitle>
 					<PopupText>Your message has been sent</PopupText>
-					<div onClick={() => setMessageSuccess(!messageSuccess)}>
+					<div onClick={() => dispatch(openPopupSuccess(!messageSuccess))}>
 						<Button magnetic button pink>
 							Ok
 						</Button>
@@ -234,13 +234,7 @@ const PopupSuccess = () => {
 				</PopupContent>
 			</PopupBody>
 			<Overlay active={messageSuccess}/>
-			{
-				messageSuccess && <Confetti
-					width={width}
-					height={height}
-				/>
-			}
-			
+			{messageSuccess && <Confetti/>}
 		</Popup>
 	)
 }

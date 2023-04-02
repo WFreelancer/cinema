@@ -10,8 +10,6 @@ import {Burger, BurgerFixed} from '../Button';
 import {FixedMenu} from '../Menu';
 import {Menu} from '../Menu';
 import axios from 'axios';
-import {useSelector, useDispatch} from 'react-redux';
-import {actionOpenMenu} from '../../store/menu/actions-menu';
 
 
 const HeaderContent = styled.div`

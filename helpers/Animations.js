@@ -16,18 +16,29 @@ export const animationImage = {
 	})
 }
 
-export const animationCard = {
+export const animationWord = {
 	hidden: {
-		opacity: 0,
 		y: 100
 	},
 	visible: custom => ({
-		opacity: 1,
 		y: 0,
 		transition: {
-			duration: 0.3,
+			delay: custom * 0.04,
+			duration: 0.8,
+			type: "spring", bounce: 0.25
 		}
 	})
+}
+export const animationCard = {
+	hidden: {
+		opacity: 0,
+	},
+	visible: {
+		opacity: 1,
+		transition: {
+			duration: 0.2,
+		}
+	}
 }
 
 export const animationImageCard = {

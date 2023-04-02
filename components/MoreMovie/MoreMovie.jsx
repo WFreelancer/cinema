@@ -1,13 +1,15 @@
-import styled from 'styled-components'
-import {useData} from '../../store/Context'
-import {motion } from 'framer-motion';
+import {useRef, useState} from 'react';
+import styled from 'styled-components';
+import {motion} from 'framer-motion';
 import {PreloaderIcon} from '../Preloader';
 import {Container} from '../Container';
 import {MButton} from '../Button';
 import {MoviesList} from '../MoviesList';
-
-import { useSelector } from "react-redux";
-import {animationContent} from '../../helpers/Animations';
+import {Parallax} from '../../hooks/Parallax';
+import {HeightEl} from '../../hooks/HeightEl';
+import {useSelector, useDispatch} from "react-redux";
+import {writeMoviesFiltered, changeCountLoadMore} from '../../store/movies/actions-movies';
+import {getMovie} from '../../config';
 
 const MovieWrapper = styled.section``
 const MovieContent = styled.div`
@@ -17,6 +19,10 @@ const MovieContent = styled.div`
 		padding: 6vh 0;
 	}
 `
+const MovieContentFooter = styled.div`
+	height: clamp(9em, 12vw, 11em);
+`
+
 const RoundedWrap = styled.div`
 	width: 100%;
 	position: relative;
@@ -32,6 +38,8 @@ const RoundedParent = styled(motion.div)`
 	top: 0;
 	position: relative;
 	overflow: hidden;
+	height: 70px;
+
 `
 const RoundedChild = styled.div`
 	width: 150%;
@@ -45,39 +53,58 @@ const RoundedChild = styled.div`
 	z-index: 1;
 `
 
-const MoreMovie = () => {
-	// const movies = useSelector((state) => state.movies);
-	// const moviesFiltered = useSelector((state) => state.filters);
-	// const { animationContent, showMore} = useData();
-	const {moviesFiltered = [], showMore} = useData();
 
-	
+const MoreMovie = () => {
+	const [loading, setLoading] = useState(false);
+	const {moviesFiltered, loadMoreCount, genreId} = useSelector((state) => state.movies);
+	const dispatch = useDispatch();
+	const ref = useRef(null);
+	const round = useRef(null);
+	const payload = {moviesFiltered, loading};
+	const x = Parallax(ref, payload);
+	const height = HeightEl(round, payload);
+
+
+	const loadMore = (genre) => {
+		setLoading(true);
+		fetch(getMovie(loadMoreCount, genre))
+		.then(response => response.json())
+		.then(data => {
+			setTimeout(() => {
+				dispatch(writeMoviesFiltered([...moviesFiltered, ...data.results]));
+				dispatch(changeCountLoadMore(loadMoreCount + 1));
+				setLoading(false);
+			}, 1000);
+		})
+	}
+
+
 	return(
 		<MovieWrapper>
 			<Container>
 				<MovieContent>
-					{!moviesFiltered.length ?
-						<PreloaderIcon/> :
-						<>
-							<MoviesList movies={moviesFiltered}/>
+					{moviesFiltered.length > 0 &&<MoviesList movies={moviesFiltered}/>}
+					<MovieContentFooter>
+						{loading ? <PreloaderIcon/> :
 							<MButton
+								ref={ref}
 								button
 								pink
 								magnetic
-								circle
-								onClick={() => showMore()}
+								circle="true"
+								onClick={() => loadMore(genreId)}
+								style={{ x }}
 							>
-								LOAD MORE
+								Load More
 							</MButton>
-						</>
-					}
+						}
+					</MovieContentFooter>
 				</MovieContent>
 			</Container>
 			<RoundedWrap>
 				<RoundedParent
-					initial={{height: 70}}
-					// animate={{height: 0}}
-					// transition={{duration: 0.8}}
+					ref={round}
+					style={{ height }}
 				>
 					<RoundedChild></RoundedChild>
 				</RoundedParent>

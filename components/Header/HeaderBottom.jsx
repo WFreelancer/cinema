@@ -7,21 +7,27 @@ import axios from 'axios';
 const HeaderBottomWrapper = styled.div`
 	background-color: var(--bg-pink);
 	margin: 0 auto;
+	min-height: 74px;
+	display: flex;
+	align-items: center;
+	@media (min-width: 1800px){
+		min-height: 108px;
+	}
+
+	@media (max-width: 1024px){
+		min-height: 56px;
+	}
 `;
 
 const MenuEl = styled.ul`
 	display: flex;
 	white-space: nowrap;
-	padding: 20px;
+	padding: 0px 20px;
 	overflow-x: scroll;
 	max-width: max-content;
 	margin: 0 auto;
 	-webkit-font-smoothing: antialiased;
 	scrollbar-width: none;
-
-	@media (min-width: 1800px){
-		padding: 30px 20px;
-	}
 
 	li{
 		position: relative;
@@ -36,10 +42,6 @@ const MenuEl = styled.ul`
 	}
 	-scrollbar {
 		display: none;
-	}
-
-	@media (max-width: 1024px){
-		padding: 10px 20px;
 	}
 `
 

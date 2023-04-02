@@ -16,7 +16,7 @@ const Loader = styled.h2`
 
 
 const VideoPlayer = (props) => {
-	const {src = "yWtFb9LJs3o", provider = "youtube", popup = false} = props;
+	const {src = "yWtFb9LJs3o", provider = "youtube"} = props;
 
 	return (
 		<>
@@ -26,7 +26,6 @@ const VideoPlayer = (props) => {
 				<Plyr
 					source={{
 						type: "video",
-						
 						sources: [
 							{
 								src: src,

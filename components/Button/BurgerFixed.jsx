@@ -1,10 +1,9 @@
 import {useEffect, useMemo} from 'react';
 import styled from 'styled-components';
-import {mouseMoveAnim, mouseEnterAnim, mouseLeaveAnim} from './ButtonAnimation'
+import {mouseMoveAnim, mouseEnterAnim, mouseLeaveAnim} from './ButtonAnimation';
 
-import {useData} from '../../store/Context'
-import {useSelector, useDispatch} from 'react-redux'
-import {actionOpenMenu, actionSchowIcon} from '../../store/menu/actions-menu'
+import {useSelector, useDispatch} from 'react-redux';
+import {actionOpenMenu, actionSchowIcon} from '../../store/menu/actions-menu';
 
 
 const BurgerWrapper = styled.button`
@@ -34,7 +33,6 @@ const BurgerWrapper = styled.button`
 		transition: transform 0.4s cubic-bezier(0.34, 1.5, 0.64, 1) 0s;
 	`}
 `
-
 const BurgerBody = styled.div`
 	position: relative;
 	background-color: var(--bg-dark);
@@ -131,7 +129,7 @@ const BurgerFixed = () => {
 	
 
 	useEffect(() => {
-		const fixedBurger = () => window.scrollY > 500 ? dispatch(actionSchowIcon(true)) : dispatch(actionSchowIcon(false))
+		const fixedBurger = () => window.scrollY > 700 ? dispatch(actionSchowIcon(true)) : dispatch(actionSchowIcon(false))
 		document.addEventListener('scroll', fixedBurger);
 
 		return () => document.removeEventListener('scroll', fixedBurger);

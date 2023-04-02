@@ -1,20 +1,15 @@
 import { forwardRef } from "react";
 import styled from 'styled-components'
 import {motion} from 'framer-motion'
-import {mouseEnterAnim, mouseLeaveAnim} from '../Button/ButtonAnimation'
+import {mouseEnterAnim, mouseLeaveAnim, mouseMoveAnim} from '../Button/ButtonAnimation';
 
-const CheckboxLabel = styled.label`
-	will-change: transform;
-	position:relative;
+
+const CheckboxLabelWrapper = styled.label``
+
+
+const CheckboxContent = styled.div`
 	cursor:pointer;
-	-webkit-user-select: none; /* Chrome/Safari */
-	-moz-user-select: none; /* Firefox */
-	overflow: hidden;
-	border-radius: 2.125em;
-	box-shadow: ${({dark}) => dark ? `inset 0px 0px 0px 1px var(--color-border-dark)` : `inset 0px 0px 0px 1px var(--white)`};
-`
-
-const CheckboxText = styled.span`
+	will-change: transform;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -23,20 +18,32 @@ const CheckboxText = styled.span`
 	padding: 1.05em 2.05em;
 	overflow: hidden;
 	color: ${({dark}) => dark ? `var(--bg-dark)` : `var(--white)`};
-	transition: color .3s linear .1s;
+	box-shadow: ${({dark}) => dark ? `inset 0px 0px 0px 1px var(--color-border-dark)` : `inset 0px 0px 0px 1px var(--white)`};
+	transition: color .3s linear;
 	z-index: 3;
+	font-family: 'Lexend', sans-serif;
+
+	span{
+		z-index: 2;
+		color: inherit;
+		position: relative;
+		transform: rotate(0.001deg);
+		will-change: transform, color;
+		transition: color .3s linear;
+	}
 
 	@media (min-width: 1800px){
 		font-size: 1.5rem;
 	}
 
 	@media (any-hover: hover){
-		${CheckboxLabel}:hover & {
-			transition: color .3s linear .1s;
+		:hover{
+			transition: color .3s linear;
 			color: ${({dark}) => dark ? `var(--white)` : `var(--bg-dark)`};
 		}
 	}
 `
+
 const HoverEl = styled.div`
 	position: absolute;
 	width: 150%;
@@ -47,14 +54,15 @@ const HoverEl = styled.div`
 	transform: translate3d(0,-76%,0);
     will-change: transform;
     transition: background-color ease-in-out .25s;
-	background: ${({dark}) => dark ? `var(--bg-pink)` : `var(--white)`};
+	background: ${({dark}) => dark ? `var(--bg-pink)` : `red`};
+	z-index: -1;
 `
 
 const CheckboxInput = styled.input`
 	display: none;
 	position: relative;
 
-	&:checked + ${CheckboxText} {
+	&:checked + ${CheckboxContent} {
 		color: ${({dark}) => dark ? `var(--white)` : `var(--bg-dark)`};
 		background: ${({dark}) => dark ? `var(--bg-dark)` : `var(--white)`};
 	}
@@ -65,23 +73,36 @@ const Checkbox = forwardRef((props, ref) => {
 		children,
 		title,
 		id,
-		filterCount,
-		handleСheckbox = Function.prototype,
+		activeCheckox,
+		handleCheckbox = Function.prototype,
 		type = 'checkbox',
-		dark
+		dark,
+		magnetic
 	} = props;
 
 	return(
-		<CheckboxLabel
-			onMouseEnter={(event) => mouseEnterAnim(event)}
-			onMouseLeave={(event) => mouseLeaveAnim(event)}
+		<CheckboxLabelWrapper
 			ref={ref}
 			dark={dark}
 		>
-			<CheckboxInput dark={dark} type={type} name={title.toLowerCase()} value={title} checked={filterCount === id} onChange={() => handleСheckbox(id)}/>
-			<CheckboxText dark={dark}>{children}</CheckboxText>
-			<HoverEl dark={dark} data-hover-fill></HoverEl>
-		</CheckboxLabel>
+			<CheckboxInput dark={dark} type={type} name={title.toLowerCase()} value={title} checked={activeCheckox === id} onChange={() => handleCheckbox(id)}/>
+			<CheckboxContent
+				dark={dark}
+				onMouseEnter={(event) => mouseEnterAnim(event)}
+				onMouseMove={(event) => mouseMoveAnim(event)}
+				onMouseLeave={(event) => mouseLeaveAnim(event)}
+				data-magnetic={magnetic}
+				data-strength="30"
+				data-strength-text="35"
+				data-spead="0.3"
+			>
+				<div data-magnetic-child>
+					<span data-magnetic-text>{children}</span>
+				</div>
+				<HoverEl dark={dark} data-hover-fill></HoverEl>
+			</CheckboxContent>
+			
+		</CheckboxLabelWrapper>
 	)
 })
 

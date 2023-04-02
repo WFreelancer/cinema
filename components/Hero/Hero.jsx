@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import {motion} from 'framer-motion'
+import {motion} from 'framer-motion';
 import {useSelector, useDispatch} from 'react-redux';
-import {actionOpenPopup} from '../../store/popup/actions-popup';
-import {PopupVideo} from '../Popups'
-
-import {MButton} from '../Button'
+import {openPopupTrailer} from '../../store/popup/actions-popup';
+import {PopupVideo} from '../Popups';
+import {MTitle} from '../Title';
+import {MButton} from '../Button';
 import {animationContent , animationImage} from '../../helpers/Animations';
+import useWindowSize from '../../helpers/windowSize';
 import poster from '../../public/Puss-in-Boots-The-Last-Wish-Featured.webp';
 import posterMobile from '../../public/main.jpg';
 
@@ -20,6 +21,18 @@ const HeroWrapper = styled(motion.section)`
 	justify-content: space-between;
 	align-items: center;
 	background-color: var(--bg-dark);
+
+	@media (min-width: 1800px){
+		min-height: calc(100vh - 216px);
+	}
+
+	@media (max-width: 1024px){
+		min-height: calc(100vh - 126px);
+	}
+
+	@media (max-width: 768px){
+		min-height: calc(100vh - 116px);
+	}
 `
 
 const Content = styled.div`
@@ -49,21 +62,6 @@ const Actions = styled.div`
 		button{
 			margin: 0 15px;
 		}
-	}
-`
-
-const Title = styled(motion.h2)`
-	font-size: 3rem;
-	color: var(--white);
-	margin-bottom: 15px;
-	font-weight: var(--fw-bold);
-
-	@media (min-width: 1800px){
-		font-size: 5rem;
-	}
-
-	@media (max-width: 767px){
-		font-size: 2rem;
 	}
 `
 
@@ -116,18 +114,21 @@ const HeroImage = styled(motion.picture)`
 
 const Hero = ({hero}) => {
 	const {title, overview, id} = hero;
-	const popupOpen = useSelector(state => state.popup.popupOpen);
 	const dispatch = useDispatch();
+	const {width} = useWindowSize();
+	const separateTitle = title.split(':')
 
 	return (
 		<HeroWrapper initial="hidden" whileInView="visible" viewport={{once: true}}>
 			<HeroImage variants={animationImage} delay={0.3}>
-				<Image src={poster} alt={title} fill priority/>
+				<Image src={width > 768 ? poster: posterMobile} alt={title} fill priority/>
 			</HeroImage>
 			<Content>
-				<Title variants={animationContent} custom={3}>
-					{title}
-				</Title>
+				<MTitle variants={animationContent} custom={3} type="h2" light marginBottom="2vh">
+					{separateTitle[0]}
+					<br/>
+					{separateTitle[1]}
+				</MTitle>
 				<Text variants={animationContent} custom={4}>
 					{overview.slice(0, 157)}...
 				</Text>
@@ -147,13 +148,13 @@ const Hero = ({hero}) => {
 						magnetic
 						variants={animationContent}
 						custom={6}
-						onClick={() => dispatch(actionOpenPopup())}
+						onClick={() => dispatch(openPopupTrailer())}
 					>
 						Watch Trailer
 					</MButton>
 				</Actions>
 			</Content>
-			{/* <PopupVideo src="giXco2jaZ_4"/> */}
+			<PopupVideo src="RqrXhwS33yc"/>
 		</HeroWrapper>
 	)
 }

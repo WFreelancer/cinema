@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import styled from 'styled-components';
 import {OverlayScrollbars} from 'overlayscrollbars'
 import 'overlayscrollbars/overlayscrollbars.css';
-import {useData} from '../store/Context'
 
 import {Header} from '../components/Header'
 import {Footer} from '../components/Footer'
@@ -20,13 +19,13 @@ const Main = styled.main`
 	flex: 1 1 auto;
 	display: flex;
 	flex-direction: column;
-	padding-top: 145px;
+	padding-top: 146px;
 
-	@media (min-width: 1800px){padding-top: 210px;}
-	@media (max-width: 1024px){padding-top: 125px;}
+	@media (min-width: 1800px){padding-top: 216px;}
+	@media (max-width: 1024px){padding-top: 126px;}
 
-	@media (max-width: 767px){
-		padding-top: 94px;
+	@media (max-width: 768px){
+		padding-top: 116px;
 	}
 `
 

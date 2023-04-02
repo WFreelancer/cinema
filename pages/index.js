@@ -1,14 +1,12 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import dynamic from "next/dynamic";
 import Head from 'next/head';
 import axios from 'axios';
 
 import {withLayout} from "../layout/Layout";
 import {getMovieByName, getMovie} from '../config';
-import {writeMovies} from '../store/movies/actions-movies';
-import {writeMoviesFiltered} from '../store/filter/actions-filter';
-import {useData} from '../store/Context';
+import {writeMoviesFiltered} from '../store/movies/actions-movies';
 import { Preloader } from "../components/Preloader";
 
 const LazyHero = dynamic(() => import('../components/Hero'));
@@ -19,16 +17,9 @@ const LazySubscribe = dynamic(() => import('../components/Form'));
 
 const Home = ({HeroSsrFetch, FiltersSsrFetch, MoviesSsrFetch}) => {
 	const dispatch = useDispatch();
-	const {setMovies, setMoviesFiltered} = useData();
 
 	useEffect(() => {
-		setTimeout(() => {
-			setMovies(MoviesSsrFetch);
-			setMoviesFiltered(MoviesSsrFetch);
-			
-			dispatch(writeMovies(MoviesSsrFetch));
-			dispatch(writeMoviesFiltered(MoviesSsrFetch));
-		}, 5000)
+		dispatch(writeMoviesFiltered(MoviesSsrFetch));
 	}, [MoviesSsrFetch]);
 
 	return (

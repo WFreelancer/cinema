@@ -42,7 +42,7 @@ const TitleEl = styled.h3`
 	font-size: 1.1rem;
 	margin-bottom: 5px;
 	line-height: 1.5rem;
-	font-weight: var(--fw-medium);
+	font-weight: 600;
 
 	@media (min-width: 1800px){
 		font-size: 1.5rem;
@@ -50,11 +50,11 @@ const TitleEl = styled.h3`
 	}
 
 	@media (max-width: 767px){
-		font-size: 1.4rem;
-		line-height: 1.7rem;
+		font-size: 1.2rem;
+		line-height: 1.5rem;
 	}
 `
-const YearEl = styled.h3`
+const YearEl = styled.span`
 	font-size: 0.9rem;
 	color: var(--light-dark);
 
@@ -80,7 +80,7 @@ const Text = styled.p`
 		line-height: 1.8rem;
 	}
 	@media (max-width: 768px){
-		font-size: 1.1rem;
+		font-size: 1rem;
 	};
 `
 
@@ -181,7 +181,7 @@ const Card = forwardRef((props, ref) => {
 				</Figure>
 				<TitleEl>{title}</TitleEl>
 				<Text>{overview.slice(0, 60)}...</Text>
-				<YearEl><span>Release</span> {getReleaseDate(release_date)}</YearEl>
+				{release_date && <YearEl><span>Release</span> {getReleaseDate(release_date)}</YearEl>}
 			</CardWrapper>
 		</Link>
 	)

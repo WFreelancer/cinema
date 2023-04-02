@@ -1,8 +1,10 @@
+import {useEffect} from 'react';
 import styled from 'styled-components';
 import { IoCloseSharp } from "react-icons/io5";
 import Image from 'next/image';
+import {useSelector, useDispatch} from 'react-redux';
+import {openCookies} from '../../store/popup/actions-popup';
 
-import {useData} from '../../store/Context';
 import {MButton} from '../Button';
 import banner from '../../public/cookies.png';
 
@@ -181,15 +183,29 @@ const Text = styled.p`
 		margin-bottom: 30px;
 	}
 `
-
-
-
+const storage = () => {
+	const data = localStorage.getItem('cookies')
+	return data ? false : true;
+}
 const Cookies = () => {
-	const {cookies, setCookies, handleCookies  = Function.prototype} = useData();
+	const cookies = useSelector(state => state.popup.cookies);
+	const dispatch = useDispatch();
+
+
+	const handleCookies = () => {
+		localStorage.setItem('cookies', true);
+		dispatch(openCookies(false));
+	}
+
+	useEffect(() =>{
+		setTimeout(() => dispatch(openCookies(storage())), 5000);
+		// eslint-disable-next-line
+	}, [])
+
 
 	return (
 		<CookiesContent cookies={cookies}>
-			<CookiesClose onClick={() => setCookies(false)}>
+			<CookiesClose onClick={() => dispatch(openCookies(false))}>
 				<IoCloseSharp size="100%"/>
 			</CookiesClose>
 			<Body>

@@ -189,6 +189,9 @@ const SocialList = styled.div`
 	flex-wrap: wrap;
 	position: relative;
 	min-width: 310px;
+	@media (max-width: 480px){
+		min-width: unset;
+	};
 `
 const LinkIcon = styled.a`
 	display: inline-flex;

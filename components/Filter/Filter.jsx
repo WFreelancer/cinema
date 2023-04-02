@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 import {motion} from 'framer-motion';
-import {useData} from '../../store/Context';
+import {animationWord} from '../../helpers/Animations';
 
 import {Container} from '../Container';
 import {MCheckbox} from '../Form';
 import {MTitle} from '../Title';
+import {useSelector, useDispatch} from "react-redux";
+import {writeMoviesFiltered, changeGenre, changeCountLoadMore} from '../../store/movies/actions-movies';
+import {getMovie} from '../../config';
 
 const FilterWrapper = styled(motion.section)`
 	padding: 10vh 0;
@@ -19,8 +22,6 @@ const Text = styled(motion.p)`
 	max-width: 900px;
 
 	@media (min-width: 1800px){
-		font-size: 1.8rem;
-		line-height: 2.3rem;
 		margin: 0 auto 60px auto;
 		max-width: 1200px;
 	}
@@ -29,7 +30,7 @@ const Text = styled(motion.p)`
 		margin: 0 auto 20px auto;
 	}
 `
-const List = styled(motion.div)`
+const List = styled(motion.ul)`
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
 	gap: 15px;
@@ -38,27 +39,67 @@ const List = styled(motion.div)`
 	}
 `
 
+const WordWrapper = styled.span`
+	position: relative;
+	display: inline-flex;
+	overflow: hidden;
+`
+const WordAnimation = styled(motion.span)`
+	position: relative;
+	display: block;
+	transform: translate(0px, 100%);
+	padding: 3px 0;
+`
+
 const Filter = ({Filters}) => {
-	const { handleСheckbox, filterCount} = useData();
+	const dispatch = useDispatch();
+	const {genreId} = useSelector((state) => state.movies);
+	const wordsTitle = Filters.title.split(' ');
+	const wordsText = Filters.text.split(' ');
+
+
+	const handleFilter = async (genre) => {
+		fetch(getMovie(1, genre))
+		.then(response => response.json())
+		.then(data => {
+			dispatch(changeGenre(genre));
+			dispatch(changeCountLoadMore(2));
+			dispatch(writeMoviesFiltered([...data.results]));
+		})
+	}
 
 	return(
 		<FilterWrapper>
 			<Container>
-				<MTitle>{Filters.title}</MTitle>
-				<Text>{Filters.text}</Text>
-				<List>
-					{Filters.item.map((dataFilter, ) => {
-						return <MCheckbox
-							dark
-							key={dataFilter.id}
-							handleСheckbox={handleСheckbox}
-							filterCount={filterCount}
-							type='radio'
-							{...dataFilter}
-						>
-							{dataFilter.title}
-						</MCheckbox>
-					})}
+				<MTitle initial="hidden" whileInView="visible" viewport={{once: true, amount: 0.5}} type="h2">
+					{wordsTitle.map((word, index) => (
+						<WordWrapper key={index}>
+							<WordAnimation variants={animationWord} custom={index}>{word}&nbsp;</WordAnimation>
+						</WordWrapper>
+					))}
+				</MTitle>
+				<Text initial="hidden" whileInView="visible" viewport={{once: true, amount: 0.5}}>
+					{wordsText.map((word, index) => (
+						<WordWrapper key={index}>
+							<WordAnimation variants={animationWord}>{word}&nbsp;</WordAnimation>
+						</WordWrapper>
+					))}
+				</Text>
+				<List initial="hidden" whileInView="visible" viewport={{once: true, amount: 0.5}}>
+					{Filters.item.map((dataFilter) => (
+						<motion.li key={dataFilter.id} variants={animationWord}>
+							<MCheckbox
+								dark
+								magnetic
+								handleCheckbox={handleFilter}
+								activeCheckox={genreId}
+								type='radio'
+								{...dataFilter}
+							>
+								{dataFilter.title}
+							</MCheckbox>
+						</motion.li>
+					))}
 				</List>
 			</Container>
 		</FilterWrapper>

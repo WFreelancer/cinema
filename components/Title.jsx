@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import styled from 'styled-components';
 import {motion} from 'framer-motion'
 
-const TitleEl = styled.h4`
+const TitleBig = styled.h1`
 	z-index: 1;
 	position: relative;
 	text-align: ${({textAlign}) => textAlign ? textAlign : `center`};
@@ -10,22 +10,38 @@ const TitleEl = styled.h4`
 	margin-bottom: ${({marginBottom}) => marginBottom ? marginBottom : `4vh`};
 	color: ${({light}) => light ? 'var(--white)' : `inherit`};
 
-	font-size: calc(clamp(2.5em, 5vw, 6em) * 0.80);
-
-	@media (min-width: 1800px){
-		font-size: 5rem;
-	}
-	
-	@media (max-width: 1024px){
-		font-size: calc(clamp(1.75em, 2.3vw, 2.5em) * 1.125);
-	}
-
+	font-size: calc(clamp(3.25em, 7vw, 8em) * .875);
 `;
-
-const Title = forwardRef(({children, ...props}, ref) => {
-	return(
-		<TitleEl ref={ref} {...props}>{children}</TitleEl>
-	)
+const TitleMiddle = styled.h2`
+	z-index: 1;
+	position: relative;
+	text-align: ${({textAlign}) => textAlign ? textAlign : `center`};
+	font-weight: var(--fw-regular);
+	margin-bottom: ${({marginBottom}) => marginBottom ? marginBottom : `4vh`};
+	color: ${({light}) => light ? 'var(--white)' : `inherit`};
+	font-size: calc(clamp(2.5em, 6vw, 7em) * .775);
+`;
+const TitleSmall = styled.h3`
+	z-index: 1;
+	position: relative;
+	text-align: ${({textAlign}) => textAlign ? textAlign : `center`};
+	font-weight: var(--fw-regular);
+	margin-bottom: ${({marginBottom}) => marginBottom ? marginBottom : `4vh`};
+	color: ${({light}) => light ? 'var(--white)' : `inherit`};
+	font-size: calc(clamp(2em, 5vw, 6em) * .675);
+`;
+// eslint-disable-next-line
+const Title = forwardRef(({children, type, ...props}, ref) => {
+	switch (type) {
+		case 'h1':
+			return <TitleBig ref={ref} {...props}>{children}</TitleBig>
+		case 'h2':
+			return <TitleMiddle ref={ref} {...props}>{children}</TitleMiddle>
+		case 'h3':
+			return <TitleSmall ref={ref} {...props}>{children}</TitleSmall>
+		default:
+			return <TitleBig ref={ref} {...props}>{children}</TitleBig>
+	}
 })
 
 const MTitle = motion(Title);

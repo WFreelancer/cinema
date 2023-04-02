@@ -7,7 +7,7 @@ import {motion} from 'framer-motion';
 import axios from 'axios';
 import {format, parse} from "date-fns";
 import {useDispatch} from 'react-redux';
-import {actionOpenPopup} from '../../store/popup/actions-popup';
+import {openPopupTrailer} from '../../store/popup/actions-popup';
 
 import {withLayout} from "../../layout/Layout";
 import {Container} from '../../components/Container';
@@ -20,7 +20,7 @@ const VideoPlayer = dynamic(() => import('../../components/Player'));
 
 import {getMovie, currentMovie} from '../../config';
 import {animationContent, animationImagePageMovie} from '../../helpers/Animations';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const Wrapper = styled(motion.section)`
@@ -359,13 +359,13 @@ const Movie = ({movie}) => {
 								custom={3}
 							>
 								<Stars>
-									<StarsGroup class="rating">
+									<StarsGroup className="rating">
 										<Star type="radio" name="rating" value="1" aria-label="awfully"/>
 										<Star type="radio" name="rating" value="2" aria-label="Badly"/>
 										<Star type="radio" name="rating" value="3" aria-label="Normal"/>
-										<Star type="radio" name="rating" value="4" aria-label="Good" checked/>
-										<Star class="rating__star" type="radio" name="rating" value="5" aria-label="Great"/>
-										<RatingStarFocus class="rating__focus"></RatingStarFocus>
+										<Star type="radio" name="rating" value="4" aria-label="Good" defaultChecked/>
+										<Star className="rating__star" type="radio" name="rating" value="5" aria-label="Great"/>
+										<RatingStarFocus className="rating__focus"></RatingStarFocus>
 									</StarsGroup>
 								</Stars>
 								<Rezult>4&nbsp;/&nbsp;5</Rezult>
@@ -379,19 +379,19 @@ const Movie = ({movie}) => {
 								viewport={{once: true}}
 								variants={animationContent}
 								custom={3}
-								onClick={() => dispatch(actionOpenPopup())}
+								onClick={() => dispatch(openPopupTrailer())}
 								borderRadius={'0'}
-								stretch
+								stretch="true"
 							>
 								Watch Trailer
 							</MButton>
 						</MovieAside>
 						<MovieInformation initial="hidden" whileInView="visible" viewport={{once: true}}>
-							<MTitle textAlign="left" marginBottom="3vh" variants={animationContent} custom={2}>{title}</MTitle>
+							<MTitle textAlign="left" marginBottom="3vh" variants={animationContent} custom={2} type="h3">{title}</MTitle>
 							<Table>
 								{production_countries[0].name && <TableRow variants={animationContent} custom={3}><span>Country</span> <span>{production_countries[0].name}</span></TableRow>}
 								{release_date && <TableRow variants={animationContent} custom={4}><span>Release</span> <span>{getReleaseDate(release_date)}</span></TableRow>}
-								{runtime && <TableRow variants={animationContent} custom={5}><span>Duration</span> <span>{hours + ':' + minutes}</span></TableRow>}
+								{runtime !== 0 && <TableRow variants={animationContent} custom={5}><span>Duration</span> <span>{hours + ':' + minutes}</span></TableRow>}
 								{popular !== isNaN && <TableRow variants={animationContent} custom={6}>
 										<span>Views</span>
 										<span>{popular.toLocaleString()}</span>

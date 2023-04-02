@@ -1,11 +1,12 @@
 import {createGlobalStyle} from 'styled-components';
 import NextNProgress from "../components/Loader";
-import {DataProvider} from '../store/Context';
 import {Provider} from 'react-redux'
 import {store, persistor} from '../store/index'
 import { PersistGate } from 'redux-persist/integration/react'
 
 const GlobalStyle = createGlobalStyle`
+	@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500&display=swap');
 	* {
 		padding: 0px;
 		margin: 0px;
@@ -58,7 +59,7 @@ const GlobalStyle = createGlobalStyle`
 		-ms-text-size-adjust: 100%;
 		-moz-text-size-adjust: 100%;
 		-webkit-text-size-adjust: 100%;
-		font-family: 'Lexend Deca', sans-serif;
+		font-family: 'Roboto', sans-serif;
 		color: var(--bg-dark);
 		height: 100%;
 		
@@ -81,6 +82,7 @@ const GlobalStyle = createGlobalStyle`
 	body,
 	#__next {
 		height: 100%;
+		scroll-behavior: smooth;
 	}
 	
 	p{
@@ -242,14 +244,12 @@ const GlobalStyle = createGlobalStyle`
 `
 export default function App({ Component, pageProps }) {
 	return (
-		<DataProvider>
-			<Provider store={store}>
-				<PersistGate loading={null} persistor={persistor}>
-					<Component {...pageProps} />
-					<GlobalStyle/>
-					<NextNProgress />
-				</PersistGate>
-			</Provider>
-		</DataProvider>
+		<Provider store={store}>
+			<PersistGate loading={null} persistor={persistor}>
+				<Component {...pageProps} />
+				<GlobalStyle/>
+				<NextNProgress />
+			</PersistGate>
+		</Provider>
 	)
 }
