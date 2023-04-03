@@ -1,18 +1,19 @@
 import Link from 'next/link'
-
 import styled from 'styled-components';
 
 const LogoIcon = styled.a`
-	font-family: var(--font-lato);
+	font-family: var(--font-lexend);
 	color: var(--white);
 	font-size: 2rem;
-	font-weight: var(--fw-bold);
+	font-weight: var(--fw-medium);
 	user-select: none;
 	letter-spacing: 2px;
 	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
 
 	span{
-		color: #F21B3F;
+		color: var(--bg-pink);
 	}
 
 	@media (min-width: 1800px){
@@ -31,7 +32,7 @@ const LogoIcon = styled.a`
 const Logo = () => {
 	return (
 		<Link href="/" legacyBehavior>
-			<LogoIcon>Cinema<span>Room</span></LogoIcon>
+			<LogoIcon>Movie<span>Verse</span></LogoIcon>
 		</Link>
 	)
 }

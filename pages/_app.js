@@ -172,7 +172,6 @@ const GlobalStyle = createGlobalStyle`
 		--orange: #FF4C1C;
 		--color-border-light: rgba(255, 255, 255, 0.2);
 		--color-border-dark: rgba(28, 29, 32, 0.175);
-		--font-lato: 'Lato', sans-serif;
 		--font-lexend: 'Lexend', sans-serif;
 
 		--fw-light: 300;
