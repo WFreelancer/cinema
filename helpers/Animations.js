@@ -36,7 +36,7 @@ export const animationCard = {
 	visible: {
 		opacity: 1,
 		transition: {
-			duration: 0.2,
+			duration: 0.3,
 		}
 	}
 }
@@ -84,8 +84,8 @@ export const animationContent = {
 		y: 0,
 		transition: {
 			delay: custom * 0.2,
-			duration: 0.4,
-			type: "tween"
+			duration: 0.3,
+			type: "linear"
 		}
 	})
 }

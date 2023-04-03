@@ -4,7 +4,7 @@ import {withLayout} from "../layout/Layout";
 import {Container} from '../components/Container';
 import {animationContent} from '../helpers/Animations';
 
-import {MButton} from '../components/Button';
+import {BreadCrumbs} from '../components/BreadCrumbs';
 
 const AboutWrapper = styled(motion.div)`
 	padding-top: 40px;
@@ -14,15 +14,7 @@ const About = () => {
 	return (
 		<AboutWrapper initial="hidden" whileInView="visible" viewport={{once: true}}>
 			<Container>
-				<MButton
-					variants={animationContent}
-					custom={1}
-					dark
-					magnetic
-					href="/"
-				>
-					Go Home
-				</MButton>
+				<BreadCrumbs>About Page</BreadCrumbs>
 				<motion.h1
 					variants={animationContent}
 					custom={2}

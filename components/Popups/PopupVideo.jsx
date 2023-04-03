@@ -1,10 +1,9 @@
-import dynamic from "next/dynamic";
-import styled from 'styled-components'
+import styled from 'styled-components';
 import {useSelector, useDispatch} from 'react-redux';
 import {openPopupTrailer} from '../../store/popup/actions-popup';
 import {Overlay} from '../Overlay';
 import { IoCloseSharp } from "react-icons/io5";
-const VideoPlayer = dynamic(() => import('../Player'));
+import VideoPlayer from '../Player/VideoPlayer';
 
 const Popup = styled.div`
 	position: fixed;
@@ -129,4 +128,4 @@ const PopupVideo = ({src, provider}) => {
 	)
 }
 
-export {PopupVideo};
+export default PopupVideo;

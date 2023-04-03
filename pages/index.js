@@ -1,25 +1,23 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import dynamic from "next/dynamic";
+import { useDispatch} from "react-redux";
 import Head from 'next/head';
 import axios from 'axios';
 
 import {withLayout} from "../layout/Layout";
 import {getMovieByName, getMovie} from '../config';
 import {writeMoviesFiltered} from '../store/movies/actions-movies';
-import { Preloader } from "../components/Preloader";
 
-const LazyHero = dynamic(() => import('../components/Hero'));
-const LazyFilter = dynamic(() => import('../components/Filter'));
-const LazyMoreMovies = dynamic(() => import('../components/MoreMovie'));
-const LazySubscribe = dynamic(() => import('../components/Form'));
+import Hero from '../components/Hero';
+import Filter from '../components/Filter';
+import MoreMovies from '../components/MoreMovie';
+import Subscribe from '../components/Form';
 
-
-const Home = ({HeroSsrFetch, FiltersSsrFetch, MoviesSsrFetch}) => {
+const Home = ({HeroSsrFetch, MoviesSsrFetch}) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		dispatch(writeMoviesFiltered(MoviesSsrFetch));
+		// eslint-disable-next-line
 	}, [MoviesSsrFetch]);
 
 	return (
@@ -30,16 +28,10 @@ const Home = ({HeroSsrFetch, FiltersSsrFetch, MoviesSsrFetch}) => {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-
-			{!LazySubscribe && !HeroSsrFetch && !FiltersSsrFetch && !LazySubscribe ? <Preloader/> :
-				<>
-					<LazyHero hero={HeroSsrFetch}/>
-					<LazyFilter Filters={FiltersSsrFetch}/>
-					<LazyMoreMovies/>
-					<LazySubscribe/>
-				</>
-			}
-			
+			<Hero hero={HeroSsrFetch}/>
+			<Filter/>
+			<MoreMovies/>
+			<Subscribe/>
 		</>
 	)
 };
@@ -47,10 +39,9 @@ const Home = ({HeroSsrFetch, FiltersSsrFetch, MoviesSsrFetch}) => {
 
 export const getServerSideProps = async () => {
 	const {data: hero} = await axios.get(getMovieByName('Puss in Boots: The Last Wish'));
-	const {data: Filters} = await axios.get('http://localhost:5000/filter');
 	const {data: movies} = await axios.get(getMovie(1));
 
-	if(!hero && !Filters && !movies){
+	if(!hero && !movies){
 		return{
 			notFound: true
 		}
@@ -59,7 +50,6 @@ export const getServerSideProps = async () => {
 	return{
 		props:{
 			HeroSsrFetch: hero.results[0],
-			FiltersSsrFetch: Filters,
 			MoviesSsrFetch: movies.results
 		}
 	}

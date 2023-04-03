@@ -6,8 +6,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "json-server": "json-server --watch db.json --port 5000",
-    "serve": "concurrently \"npm run dev\" \"npm run json-server\"",
     "lint": "next lint"
   },
   "dependencies": {
@@ -41,6 +39,7 @@
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
     "screenfull": "^6.0.2",
+    "sharp": "^0.32.0",
     "styled-components": "^5.3.6",
     "yup": "^0.32.11"
   }

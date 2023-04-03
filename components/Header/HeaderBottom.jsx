@@ -1,8 +1,7 @@
-import {  useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link'
 import styled from 'styled-components';
 import {motion, AnimateSharedLayout} from 'framer-motion'
-import axios from 'axios';
 
 const HeaderBottomWrapper = styled.div`
 	background-color: var(--bg-pink);
@@ -46,6 +45,7 @@ const MenuEl = styled.ul`
 `
 
 const MenuLink = styled.a`
+	font-family: var(--font-lexend);
 	color: inherit;
 	font-size: 14px;
 	text-transform: uppercase;
@@ -70,32 +70,24 @@ const AnimBackground = styled(motion.div)`
 	background-color: var(--white);
 	border-radius: 30px;
 `
+const links = [
+	{title: "Cinema Movies", href: "/"},
+	{title: "Tv series", href: "/"},
+	{title: "Carhrefons", href: "/"},
+	{title: "Anime", href: "/"},
+	{title: "New Movies", href: "/"}
+]
 
 const HeaderBottom = () => {
-	const [allLink, setAllLink] = useState([]);
 	const [activeLink, setActiveLink] = useState(0);
-
-	const loadMenuLink = async () => {
-		const response = await axios.get('http://localhost:5000/BottomLinks');
-
-
-		setAllLink(response.data);
-	}
-
-	useEffect(() => {
-		loadMenuLink();
-		// eslint-disable-next-line
-	}, []);
-
-
 
 	return(
 		
 			<HeaderBottomWrapper>
 				<MenuEl>
 					<AnimateSharedLayout>
-					{allLink.length > 0 &&
-						allLink.map((link, index) => (
+					{links.length > 0 &&
+						links.map((link, index) => (
 							<motion.li 
 								key={index}
 								initial={{color: 'var(--white)'}}

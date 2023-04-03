@@ -5,8 +5,8 @@ import {store, persistor} from '../store/index'
 import { PersistGate } from 'redux-persist/integration/react'
 
 const GlobalStyle = createGlobalStyle`
-	@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-	@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500&display=swap');
+	// @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400&display=swap');
 	* {
 		padding: 0px;
 		margin: 0px;
@@ -173,6 +173,8 @@ const GlobalStyle = createGlobalStyle`
 		--color-border-light: rgba(255, 255, 255, 0.2);
 		--color-border-dark: rgba(28, 29, 32, 0.175);
 		--font-lato: 'Lato', sans-serif;
+		--font-lexend: 'Lexend', sans-serif;
+
 		--fw-light: 300;
 		--fw-regular: 400;
 		--fw-medium: 500;

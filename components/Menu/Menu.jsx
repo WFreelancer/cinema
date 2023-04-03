@@ -32,6 +32,7 @@ const MenuList = styled.ul`
 `
 
 const CustomLink = styled.a`
+	font-family: var(--font-lexend);
 	position: relative;
 	color: var(--grey);
 	cursor: pointer;
@@ -39,8 +40,6 @@ const CustomLink = styled.a`
 	text-transform: uppercase;
 	transition: var(--transition-sm);
 	padding: 7px 15px;
-
-
 
 	&:before{
 		content: '';

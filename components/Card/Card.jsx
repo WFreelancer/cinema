@@ -39,10 +39,11 @@ const ImageEl = styled(Image)`
 `
 
 const TitleEl = styled.h3`
+	font-family: var(--font-lexend);
 	font-size: 1.1rem;
 	margin-bottom: 5px;
 	line-height: 1.5rem;
-	font-weight: 600;
+	font-weight: 500;
 
 	@media (min-width: 1800px){
 		font-size: 1.5rem;
@@ -55,6 +56,7 @@ const TitleEl = styled.h3`
 	}
 `
 const YearEl = styled.span`
+	font-family: var(--font-lexend);
 	font-size: 0.9rem;
 	color: var(--light-dark);
 
@@ -71,12 +73,13 @@ const YearEl = styled.span`
 	};
 `
 const Text = styled.p`
+	font-family: var(--font-lexend);
 	color: var(--light-dark);
-	font-size: 0.9rem;
+	font-size: 0.85rem;
 	margin-bottom: 10px;
 
 	@media (min-width: 1800px){
-		font-size: 1.3rem;
+		font-size: 1.2rem;
 		line-height: 1.8rem;
 	}
 	@media (max-width: 768px){

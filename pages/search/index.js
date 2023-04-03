@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { GetServerSideProps } from 'next';
 import styled from 'styled-components';
 import {motion} from 'framer-motion';
 import {withLayout} from "../../layout/Layout";
@@ -45,6 +44,7 @@ const Search = () => {
 		if(searchState !== ''){
 			searchMovies();
 		}
+		// eslint-disable-next-line
 	}, [searchState]);
 
 

@@ -50,8 +50,37 @@ const WordAnimation = styled(motion.span)`
 	transform: translate(0px, 100%);
 	padding: 3px 0;
 `
-
-const Filter = ({Filters}) => {
+const Filters = {
+	title: "Watch your favorite movies online",
+	text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia cup itate dolorem, totam, inventore maiores qui omnis cumque soluta labore corrupti, porro atque unde veniam facere inc id unt vero aspernatur architecto tenetur.",
+	item: [
+			{
+				id: 0,
+				title:"All"
+			},
+			{
+				id: 28,
+				title:"Action"
+			},
+			{
+				id: 12,
+				title:"Adventure"
+			},
+			{
+				id: 35,
+				title:"Comedy"
+			},
+			{
+				id: 18,
+				title:"Drama"
+			},
+			{
+				id: 10751,
+				title:"Family"
+			}
+  	]
+}
+const Filter = () => {
 	const dispatch = useDispatch();
 	const {genreId} = useSelector((state) => state.movies);
 	const wordsTitle = Filters.title.split(' ');

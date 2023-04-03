@@ -1,16 +1,15 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import {motion} from 'framer-motion';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {openPopupTrailer} from '../../store/popup/actions-popup';
-import {PopupVideo} from '../Popups';
 import {MTitle} from '../Title';
 import {MButton} from '../Button';
 import {animationContent , animationImage} from '../../helpers/Animations';
 import useWindowSize from '../../helpers/windowSize';
 import poster from '../../public/Puss-in-Boots-The-Last-Wish-Featured.webp';
 import posterMobile from '../../public/main.jpg';
-
+import PopupVideo from '../Popups/PopupVideo';
 
 const HeroWrapper = styled(motion.section)`
 	position: relative;
@@ -124,31 +123,33 @@ const Hero = ({hero}) => {
 				<Image src={width > 768 ? poster: posterMobile} alt={title} fill priority/>
 			</HeroImage>
 			<Content>
-				<MTitle variants={animationContent} custom={3} type="h2" light marginBottom="2vh">
+				<MTitle variants={animationContent} delay={0.5} custom={3} type="h2" light marginBottom="2vh" style={{opacity: 0}}>
 					{separateTitle[0]}
 					<br/>
 					{separateTitle[1]}
 				</MTitle>
-				<Text variants={animationContent} custom={4}>
+				<Text variants={animationContent} custom={4} delay={0.5} style={{opacity: 0}}>
 					{overview.slice(0, 157)}...
 				</Text>
 				<Actions>
-					<MButton
+					<MButton style={{opacity: 0}}
 						pink
 						magnetic
 						href={`/movie/${id}`}
 						variants={animationContent}
 						custom={5}
+						delay={0.5}
 					>
 						Learn More
 					</MButton>
-					<MButton
+					<MButton style={{opacity: 0}}
 						light
 						button
 						magnetic
 						variants={animationContent}
 						custom={6}
 						onClick={() => dispatch(openPopupTrailer())}
+						delay={0.5}
 					>
 						Watch Trailer
 					</MButton>

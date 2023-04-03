@@ -35,20 +35,15 @@ const HeaderBody = styled.div`
 	display: flex;
 	align-items: center;
 `
+const links = [
+	{title: "Home", href: "/"},
+	{title: "About", href: "/about"},
+	{title: "Popular", href: "/popular"},
+	{title: "Contacts", href: "/contacts"}
+]
 
 const HeaderTop = () => {
-	const [links, setLinks] = useState([]);
 	const router = useRouter();
-
-	const loadMenuLink = async () => {
-		const response = await axios.get('http://localhost:5000/TopLinks');
-
-		setLinks(response.data);
-	}
-
-	useEffect(() => {
-		loadMenuLink();
-	}, [])
 
 	return (
 		<HeaderTopWrapper>

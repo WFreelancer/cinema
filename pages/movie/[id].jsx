@@ -13,14 +13,14 @@ import {withLayout} from "../../layout/Layout";
 import {Container} from '../../components/Container';
 import {MButton} from '../../components/Button';
 import {MTitle} from '../../components/Title';
+import {BreadCrumbs} from '../../components/BreadCrumbs';
 import error from '../../public/image-not-found.png';
-import {PopupVideo} from '../../components/Popups';
 
-const VideoPlayer = dynamic(() => import('../../components/Player'));
+const VideoPlayer = dynamic(() => import('../../components/Player/VideoPlayer'));
+const LazyPopupVideo = dynamic(() => import('../../components/Popups/PopupVideo'));
 
 import {getMovie, currentMovie} from '../../config';
 import {animationContent, animationImagePageMovie} from '../../helpers/Animations';
-import { useEffect, useState } from 'react';
 
 
 const Wrapper = styled(motion.section)`
@@ -167,29 +167,7 @@ const MovieAside = styled(motion.aside)`
 	flex: 0 0 30%;
 	margin-bottom: 30px;
 `
-const BreadCrumbs = styled(motion.div)`
-	margin-bottom: 20px;
-	color: var(--light-dark);
 
-	@media (min-width: 1800px){
-		font-size: 1.3rem !important;
-		font-size: 1.8rem;
-	};
-
-	@media (max-width: 600px){
-		font-size: 1.2rem;
-	};
-	a{
-		font-size: inherit;
-		line-height: inherit;
-		transition: var(--transition-sm);
-		@media (any-hover: hover){
-			:hover{
-				color: var(--bg-red);
-			}
-		}
-	}
-`
 const MovieInformation = styled(motion.div)`
 	flex-grow: 1;
 `
@@ -312,10 +290,6 @@ const Movie = ({movie}) => {
 	const hours = Math.trunc(runtime/60);
 	const minutes = runtime % 60;
 
-	useEffect(()=> {
-		console.log(movie);
-	}, [])
-
 	return(
 		<>
 			<Head>
@@ -328,14 +302,7 @@ const Movie = ({movie}) => {
 				exit={{opacity: 0}}
 			>
 				<Container>
-					<BreadCrumbs
-						initial="hidden"
-						whileInView="visible"
-						viewport={{once: true}}
-						variants={animationContent} custom={1}
-					>
-						<Link href="/">Home</Link> / {title}
-					</BreadCrumbs>
+					<BreadCrumbs>{title}</BreadCrumbs>
 					<MovieContent>
 						<MovieAside >
 							<ImageWrapper
@@ -368,7 +335,7 @@ const Movie = ({movie}) => {
 										<RatingStarFocus className="rating__focus"></RatingStarFocus>
 									</StarsGroup>
 								</Stars>
-								<Rezult>4&nbsp;/&nbsp;5</Rezult>
+								<Rezult>4</Rezult>
 							</Rating>
 							<MButton
 								pink
@@ -389,16 +356,16 @@ const Movie = ({movie}) => {
 						<MovieInformation initial="hidden" whileInView="visible" viewport={{once: true}}>
 							<MTitle textAlign="left" marginBottom="3vh" variants={animationContent} custom={2} type="h3">{title}</MTitle>
 							<Table>
-								{production_countries[0].name && <TableRow variants={animationContent} custom={3}><span>Country</span> <span>{production_countries[0].name}</span></TableRow>}
-								{release_date && <TableRow variants={animationContent} custom={4}><span>Release</span> <span>{getReleaseDate(release_date)}</span></TableRow>}
+								{production_countries[0]?.name && <TableRow variants={animationContent} custom={3}><span>Country</span> <span>{production_countries[0].name}</span></TableRow>}
+								{release_date !== NaN && <TableRow variants={animationContent} custom={4}><span>Release</span> <span>{getReleaseDate(release_date)}</span></TableRow>}
 								{runtime !== 0 && <TableRow variants={animationContent} custom={5}><span>Duration</span> <span>{hours + ':' + minutes}</span></TableRow>}
-								{popular !== isNaN && <TableRow variants={animationContent} custom={6}>
+								{popular !== NaN && <TableRow variants={animationContent} custom={6}>
 										<span>Views</span>
 										<span>{popular.toLocaleString()}</span>
 									</TableRow>
 								}
 								{
-									genres &&
+									genres !== NaN && genres.length > 0 &&
 									<TableRow variants={animationContent} custom={7}>
 										<span>Genres</span> 
 										<GenresList>
@@ -425,7 +392,7 @@ const Movie = ({movie}) => {
 						<VideoPlayer src="giXco2jaZ_4"/>
 					</VideoWrapper>
 				</Container>
-				<PopupVideo src="giXco2jaZ_4"/>
+				<LazyPopupVideo src="giXco2jaZ_4"/>
 			</Wrapper>
 		</>
 		
