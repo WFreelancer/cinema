@@ -1,16 +1,17 @@
-import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import {useRouter} from 'next/router';
-
+import dynamic from 'next/dynamic';
 import {SearchHeader} from './SearchHeader';
 import {Container} from '../Container';
 
 import {Logo} from '../Logo';
 import {Burger, BurgerFixed} from '../Button';
-import {FixedMenu} from '../Menu';
 import {Menu} from '../Menu';
-import axios from 'axios';
 
+const DynamicMenuFixed = dynamic(() => import('../Menu/MenuFixed'), {
+	ssr: false,
+	loading: () => <></>
+});
 
 const HeaderContent = styled.div`
 	display: flex;
@@ -54,7 +55,7 @@ const HeaderTop = () => {
 						<Menu links={links}/>
 						{router.route !== '/search' && <SearchHeader/>}
 						<Burger/>
-						<FixedMenu links={links}/>
+						<DynamicMenuFixed links={links}/>
 						<BurgerFixed/>
 					</HeaderBody>
 				</HeaderContent>

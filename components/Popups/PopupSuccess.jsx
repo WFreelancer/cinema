@@ -239,4 +239,4 @@ const PopupSuccess = () => {
 	)
 }
 
-export {PopupSuccess};
+export default PopupSuccess;

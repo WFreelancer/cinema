@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import {motion} from 'framer-motion';
 import {useDispatch} from 'react-redux';
 import {openPopupTrailer} from '../../store/popup/actions-popup';
@@ -9,7 +10,11 @@ import {animationContent , animationImage} from '../../helpers/Animations';
 import useWindowSize from '../../helpers/windowSize';
 import poster from '../../public/Puss-in-Boots-The-Last-Wish-Featured.webp';
 import posterMobile from '../../public/main.jpg';
-import PopupVideo from '../Popups/PopupVideo';
+
+const DynamicPopupVideo = dynamic(() => import('../Popups/PopupVideo'), {
+	ssr: false,
+	loading: () => <></>
+});
 
 const HeroWrapper = styled(motion.section)`
 	position: relative;
@@ -155,7 +160,7 @@ const Hero = ({hero}) => {
 					</MButton>
 				</Actions>
 			</Content>
-			<PopupVideo src="RqrXhwS33yc"/>
+			<DynamicPopupVideo src="RqrXhwS33yc"/>
 		</HeroWrapper>
 	)
 }

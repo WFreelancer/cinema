@@ -298,9 +298,7 @@ const RoundedDiv = styled.div`
 	z-index: 1;
 `
 
-
-
-const FixedMenu = (({links}) => {
+const MenuFixed = (({links}) => {
 	const router = useRouter();
 	const menuOpen = useSelector(state => state.menu.menuOpen);
 	const dispatch = useDispatch();
@@ -358,4 +356,4 @@ const FixedMenu = (({links}) => {
 	)
 })
 
-export {FixedMenu}
+export default MenuFixed;
