@@ -124,6 +124,7 @@ const SearchLabel = styled.label`
 		pointer-events: ${props => !props.active ? `none` : `auto`};
 		box-shadow: var(--shadow);
 		z-index: -22222;
+		border-radius: 5px;
 	}
 
 	@media (max-width: 768px){
@@ -163,7 +164,9 @@ const Input = styled.input`
 
 	@media (max-width: 1024px){
 		font-size: 16px;
-		border-radius: 0px;
+		background: #DBDBDB;
+		box-shadow: 5px 5px 19px -5px #353B48;
+		border-radius: 5px;
 	}
 
 	:focus{

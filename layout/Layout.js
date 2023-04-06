@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import styled from 'styled-components';
 import {OverlayScrollbars} from 'overlayscrollbars'
 import 'overlayscrollbars/overlayscrollbars.css';
-
+import {motion} from 'framer-motion';
 import {Header} from '../components/Header'
 import {Footer} from '../components/Footer'
 import {Cookies} from '../components/Popups'
@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 	flex-direction: column;
 	overflow: hidden;
 `
-const Main = styled.main`
+const Main = styled(motion.main)`
 	flex: 1 1 auto;
 	display: flex;
 	flex-direction: column;
@@ -51,7 +51,11 @@ const Layout = ({children}) => {
 				dispatch(actionSearchMenu(false))}
 			>
 				<Header/>
-				<Main>
+				<Main
+					initial={{opacity: 0}}
+					animate={{opacity: 1}}
+					exit={{opacity: 0}}
+				>
 					{children}
 				</Main>
 				<Footer/>
