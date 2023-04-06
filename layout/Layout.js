@@ -32,33 +32,17 @@ const Main = styled.main`
 const Layout = ({children}) => {
 	const openSearch = useSelector(state => state.search.openSearch);
 	const search = useSelector(state => state.search.searchState);
-	const menuOpen = useSelector(state => state.menu.menuOpen);
-	const popupOpen = useSelector(state => state.popup);
 	const dispatch = useDispatch();
 	
-	// useEffect(() => {
-	// 	if(menuOpen || popupOpen){
-	// 		document.querySelector('.wrapper').style.overflow = 'hidden'
-	// 	}else{
-	// 		document.querySelector('.wrapper').style.overflow = ''
-	// 	}
-	// }, [
-	// 	menuOpen,
-	// 	popupOpen
-	// ]);
 
-	// useEffect(() => {
-	// 	window.scrollTo(0, 0);
-	// 	let scrollBars = OverlayScrollbars(document.querySelector('body'), {
-	// 		scrollbars: {
-	// 			visibility: 'hidden',
-	// 		},
-	// 	});
+	useEffect(() => {
+		window.scrollTo(0, 0);
+		let scrollBars = OverlayScrollbars(document.querySelector('body'), {});
 
-	// 	return () => {
-	// 		scrollBars.destroy();
-	// 	}
-	// }, [])
+		return () => {
+			scrollBars.destroy();
+		}
+	}, [])
 
 	return(
 		<>
