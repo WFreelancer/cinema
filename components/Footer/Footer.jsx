@@ -20,17 +20,19 @@ const Row = styled.div`
 	justify-content: space-between;
 	align-items: center;
 
-	@media (min-width: 1800px){
-		span{
-			font-size: 1.5rem;
-		}
-	}
-
 	@media (max-width: 480px){
 		flex-direction: column;
-		span{
-			margin-top: 15px;
-		}
+	}
+`
+
+const Info = styled.span`
+	color: var(--white);
+
+	@media (min-width: 1800px){
+		font-size: 1.5rem;
+	}
+	@media (max-width: 480px){
+		margin-top: 15px;
 	}
 `
 const Footer = () => {
@@ -39,7 +41,7 @@ const Footer = () => {
 			<Container>
 				<Row>
 					<Logo/>
-					<span style={{color: 'var(--white)'}}>© Code by Mark Kostenko {new Date().getFullYear()}</span>
+					<Info>© Code by Mark Kostenko {new Date().getFullYear()}</Info>
 				</Row>
 			</Container>
 		</FooterWrapper>

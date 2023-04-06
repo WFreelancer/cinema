@@ -40,6 +40,9 @@ const RoundedParent = styled(motion.div)`
 	overflow: hidden;
 	height: 70px;
 
+	@media (max-width: 768px){
+		height: 50px;
+	}
 `
 const RoundedChild = styled.div`
 	width: 150%;

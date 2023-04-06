@@ -11,6 +11,10 @@ const TitleBig = styled.h1`
 	color: ${({light}) => light ? 'var(--white)' : `inherit`};
 
 	font-size: calc(clamp(3.25em, 7vw, 8em) * .875);
+
+	@media (max-width: 480px){
+		margin-bottom: ${({marginBottom}) => marginBottom && `4vh`};
+	}
 `;
 const TitleMiddle = styled.h2`
 	z-index: 1;

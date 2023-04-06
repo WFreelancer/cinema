@@ -27,6 +27,7 @@ const FormWrapper = styled(motion.div)`
 	}
 
 	@media (max-width: 1024px){
+		padding: 10vh 0 7vh 0;
 		min-height: calc(100vh - 128px);
 	}
 
@@ -35,6 +36,7 @@ const FormWrapper = styled(motion.div)`
 	}
 
 	@media (max-width: 480px){
+		padding: 8vh 0 5vh 0;
 		min-height: calc(100vh - 115px);
 	}
 `
@@ -85,6 +87,9 @@ const OverlayGradient = styled.div`
 	background: linear-gradient(to bottom,hsla(225, 7%, 12%) 0%, hsla(225, 7%, 12%, 0.987) 8.1%, hsla(225, 7%, 12%, 0.951) 15.5%, hsla(225, 7%, 12%, 0.896) 22.5%, hsla(225, 7%, 12%, 0.825) 29%, hsla(225, 7%, 12%, 0.741) 35.3%, hsla(225, 7%, 12%, 0.648) 41.2%, hsla(225, 7%, 12%, 0.55) 47.1%, hsla(225, 7%, 12%, 0.45) 52.9%, hsla(225, 7%, 12%, 0.352) 58.8%, hsla(225, 7%, 12%, 0.259) 64.7%, hsla(225, 7%, 12%, 0.175) 71%, hsla(225, 7%, 12%, 0.104) 77.5%, hsla(225, 7%, 12%, 0.049) 84.5%, hsla(225, 7%, 12%, 0.013) 91.9%, hsla(225, 7%, 12%, 0) 100%);
 	opacity: .75;
 	z-index: 1;
+	@media (max-width: 768px){
+		top: 10px;
+	}
 `
 const schema = yup.object().shape({
 	firstName: yup.string().matches(/^([^0-9]*)$/, "First name should not contain numbers").required('Please enter your firstName.'),
@@ -94,7 +99,7 @@ const schema = yup.object().shape({
 
 const Subscribe = () => {
 	const dispatch = useDispatch();
-	const {moviesFiltered, genreId} = useSelector((state) => state.movies);
+	const {moviesFiltered} = useSelector((state) => state.movies);
 	const { register, handleSubmit, formState: { errors }, reset } = useForm({
 		mode: 'onBlur',
 		resolver: yupResolver(schema),
