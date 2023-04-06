@@ -16,14 +16,8 @@ import {MTitle} from '../../components/Title';
 import {BreadCrumbs} from '../../components/BreadCrumbs';
 import error from '../../public/image-not-found.png';
 
-const DynamicVideoPlayer = dynamic(() => import('../../components/Player/VideoPlayer'), {
-	ssr: false,
-	loading: () => <></>
-});
-const DynamicPopupVideo = dynamic(() => import('../../components/Popups/PopupVideo'), {
-	ssr: false,
-	loading: () => <></>
-});
+const VideoPlayer = dynamic(() => import('../../components/Player/VideoPlayer'));
+const LazyPopupVideo = dynamic(() => import('../../components/Popups/PopupVideo'));
 
 import {getMovie, currentMovie} from '../../config';
 import {animationContent, animationImagePageMovie} from '../../helpers/Animations';
@@ -395,10 +389,10 @@ const Movie = ({movie}) => {
 						custom={3}
 						variants={animationImagePageMovie}
 					>
-						<DynamicVideoPlayer src="giXco2jaZ_4"/>
+						<VideoPlayer src="giXco2jaZ_4"/>
 					</VideoWrapper>
 				</Container>
-				<DynamicPopupVideo src="giXco2jaZ_4"/>
+				<LazyPopupVideo src="giXco2jaZ_4"/>
 			</Wrapper>
 		</>
 		

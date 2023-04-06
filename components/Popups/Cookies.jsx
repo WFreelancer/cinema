@@ -225,4 +225,4 @@ const Cookies = () => {
 	)
 }
 
-export default Cookies;
+export {Cookies};

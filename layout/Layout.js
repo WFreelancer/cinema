@@ -1,17 +1,13 @@
 import { useEffect } from 'react';
-import dynamic from 'next/dynamic';
 import styled from 'styled-components';
-import {OverlayScrollbars} from 'overlayscrollbars';
+import {OverlayScrollbars} from 'overlayscrollbars'
 import 'overlayscrollbars/overlayscrollbars.css';
-import {motion} from 'framer-motion';
-import {Header} from '../components/Header';
-import {Footer} from '../components/Footer';
+
+import {Header} from '../components/Header'
+import {Footer} from '../components/Footer'
+import {Cookies} from '../components/Popups'
 import {useSelector, useDispatch} from 'react-redux';
 import {actionSearchMenu} from '../store/search/actions-search';
-const DynamicCookies = dynamic(() => import('../components/Popups/Cookies'), {
-	ssr: false,
-	loading: () => <></>
-});
 
 const Wrapper = styled.div`
 	min-height: 100%;
@@ -59,7 +55,7 @@ const Layout = ({children}) => {
 					{children}
 				</Main>
 				<Footer/>
-				<DynamicCookies/>
+				<Cookies/>
 			</Wrapper>
 		</>
 	)

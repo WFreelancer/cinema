@@ -2,23 +2,19 @@ import styled from 'styled-components';
 import {motion} from 'framer-motion';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import dynamic from 'next/dynamic';
 import * as yup from 'yup';
 
 import {Container} from '../Container';
 import {Title} from '../Title';
 import {MButton} from '../Button';
 import {CustomInput} from './CustomInput';
+import {PopupSuccess} from '../Popups';
 import {useDispatch, useSelector} from 'react-redux';
 import {openPopupSuccess} from '../../store/popup/actions-popup';
 
 import { useLayoutEffect, useState, useRef } from 'react';
 import { useScroll, useTransform, useSpring } from 'framer-motion';
 
-const DynamicPopupSuccess = dynamic(() => import('../Popups/PopupSuccess'), {
-	ssr: false,
-	loading: () => <></>
-});
 
 const FormWrapper = styled(motion.div)`
 	position: relative;
@@ -183,7 +179,7 @@ const Subscribe = () => {
 					</FormInit>
 				</FormContent>
 			</Container>
-			<DynamicPopupSuccess/>
+			<PopupSuccess/>
 		</FormWrapper>
 	)
 }
