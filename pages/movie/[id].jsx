@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import Link from 'next/link';
 import dynamic from "next/dynamic";
 import styled from 'styled-components';
 import {motion} from 'framer-motion';

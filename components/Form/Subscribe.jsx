@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import dynamic from "next/dynamic";
 import {motion} from 'framer-motion';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -8,13 +9,16 @@ import {Container} from '../Container';
 import {Title} from '../Title';
 import {MButton} from '../Button';
 import {CustomInput} from './CustomInput';
-import {PopupSuccess} from '../Popups';
 import {useDispatch, useSelector} from 'react-redux';
 import {openPopupSuccess} from '../../store/popup/actions-popup';
 
 import { useLayoutEffect, useState, useRef } from 'react';
 import { useScroll, useTransform, useSpring } from 'framer-motion';
 
+const LazyPopupSuccess = dynamic(() => import('../Popups/PopupSuccess'), {
+	ssr: false,
+	loading: () => <></>
+});
 
 const FormWrapper = styled(motion.div)`
 	background-color: var(--bg-dark);
@@ -175,7 +179,7 @@ const Subscribe = () => {
 					</FormInit>
 				</FormContent>
 			</Container>
-			<PopupSuccess/>
+			<LazyPopupSuccess/>
 		</FormWrapper>
 	)
 }
