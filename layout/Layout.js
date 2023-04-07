@@ -1,8 +1,4 @@
-import { useEffect } from 'react';
 import styled from 'styled-components';
-import {OverlayScrollbars} from 'overlayscrollbars'
-import 'overlayscrollbars/overlayscrollbars.css';
-
 import {Header} from '../components/Header'
 import {Footer} from '../components/Footer'
 import {Cookies} from '../components/Popups'
@@ -33,16 +29,6 @@ const Layout = ({children}) => {
 	const openSearch = useSelector(state => state.search.openSearch);
 	const search = useSelector(state => state.search.searchState);
 	const dispatch = useDispatch();
-	
-
-	useEffect(() => {
-		window.scrollTo(0, 0);
-		let scrollBars = OverlayScrollbars(document.querySelector('body'), {});
-
-		return () => {
-			scrollBars.destroy();
-		}
-	}, [])
 
 	return(
 		<>

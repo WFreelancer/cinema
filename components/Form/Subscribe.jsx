@@ -17,6 +17,7 @@ import { useScroll, useTransform, useSpring } from 'framer-motion';
 
 
 const FormWrapper = styled(motion.div)`
+	background-color: var(--bg-dark);
 	position: relative;
 	padding: 13vh 0 10vh 0;
 	overflow: hidden;
@@ -43,15 +44,7 @@ const FormWrapper = styled(motion.div)`
 
 const FormContent = styled(motion.div)``
 
-const FormBg = styled(motion.div)`
-	position: absolute;
-	top:0;
-	right: 0;
-	width: 100%;
-	height: 100%;
-	user-select: none;
-	background-color: var(--bg-dark);
-`
+
 const FormInit = styled.form``
 const FormList = styled.ul`
 	margin-bottom: 50px;
@@ -89,6 +82,10 @@ const OverlayGradient = styled.div`
 	z-index: 1;
 	@media (max-width: 768px){
 		top: 10px;
+	}
+	@media (max-width: 480px){
+		top: 0px;
+		height: calc(clamp(3em,12vh,7em) * .75);
 	}
 `
 const schema = yup.object().shape({
@@ -135,7 +132,6 @@ const Subscribe = () => {
 
 	return(
 		<FormWrapper initial="hidden" whileInView="visible" viewport={{once: true, amount: 0.2}}>
-			<FormBg/>
 			<OverlayGradient/>
 			<Container>
 				<FormContent ref={ref} style={{y}}>

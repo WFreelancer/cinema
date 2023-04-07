@@ -5,12 +5,14 @@ const HeightEl = (ref, payload) => {
 	const [elementTop, setElementTop] = useState(0);
 	const [clientHeight, setClientHeight] = useState(0);
 	const { scrollY } = useScroll();
+	const mobile = window && window.matchMedia('(min-width: 480)');
+	const heightEl = mobile ? 50 : 70;
 
 
 	const initial = elementTop - clientHeight
 	const final = elementTop + 10;
 
-	const height  = useTransform(scrollY, [initial, final], [70, 0]);
+	const height  = useTransform(scrollY, [initial, final], [heightEl, 0]);
 
 	useLayoutEffect(() => {
 		const onResize = () => {

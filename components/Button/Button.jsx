@@ -20,6 +20,7 @@ const CustomLink = styled(Link)`
 const LinkEl = styled.a`
 	position: relative;
 	min-width: 170px;
+	height: 100%;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
