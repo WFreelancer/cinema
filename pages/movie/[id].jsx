@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import dynamic from "next/dynamic";
 import styled from 'styled-components';
 import {motion} from 'framer-motion';
 import axios from 'axios';
@@ -14,10 +13,8 @@ import {MButton} from '../../components/Button';
 import {MTitle} from '../../components/Title';
 import {BreadCrumbs} from '../../components/BreadCrumbs';
 import error from '../../public/image-not-found.png';
-
-const VideoPlayer = dynamic(() => import('../../components/Player/VideoPlayer'));
-const LazyPopupVideo = dynamic(() => import('../../components/Popups/PopupVideo'));
-
+import VideoPlayer from '../../components/Player/VideoPlayer';
+import PopupVideo from '../../components/Popups/PopupVideo';
 import {getMovie, currentMovie} from '../../config';
 import {animationContent, animationImagePageMovie} from '../../helpers/Animations';
 
@@ -391,7 +388,7 @@ const Movie = ({movie}) => {
 						<VideoPlayer src="giXco2jaZ_4"/>
 					</VideoWrapper>
 				</Container>
-				<LazyPopupVideo src="giXco2jaZ_4"/>
+				<PopupVideo src="giXco2jaZ_4"/>
 			</Wrapper>
 		</>
 		
