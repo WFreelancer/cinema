@@ -305,7 +305,7 @@ const Movie = ({movie}) => {
 									initial="hidden"
 									whileInView="visible"
 									viewport={{once: true}}
-									custom={2}
+									custom={1}
 									variants={animationImagePageMovie}
 								>
 								<ImageEl
@@ -319,7 +319,7 @@ const Movie = ({movie}) => {
 								whileInView="visible"
 								viewport={{once: true}}
 								variants={animationContent}
-								custom={3}
+								custom={1}
 							>
 								<Stars>
 									<StarsGroup className="rating">
@@ -341,7 +341,7 @@ const Movie = ({movie}) => {
 								whileInView="visible"
 								viewport={{once: true}}
 								variants={animationContent}
-								custom={3}
+								custom={2}
 								onClick={() => dispatch(openPopupTrailer())}
 								borderRadius={'0'}
 								stretch="true"
@@ -350,19 +350,19 @@ const Movie = ({movie}) => {
 							</MButton>
 						</MovieAside>
 						<MovieInformation initial="hidden" whileInView="visible" viewport={{once: true}}>
-							<MTitle textAlign="left" marginBottom="3vh" variants={animationContent} custom={2} type="h3">{title}</MTitle>
+							<MTitle textAlign="left" marginBottom="3vh" variants={animationContent} custom={3} type="h3">{title}</MTitle>
 							<Table>
-								{production_countries[0]?.name && <TableRow variants={animationContent} custom={3}><span>Country</span> <span>{production_countries[0].name}</span></TableRow>}
-								{release_date !== NaN && <TableRow variants={animationContent} custom={4}><span>Release</span> <span>{getReleaseDate(release_date)}</span></TableRow>}
-								{runtime !== 0 && <TableRow variants={animationContent} custom={5}><span>Duration</span> <span>{hours + ':' + minutes}</span></TableRow>}
-								{popular !== NaN && <TableRow variants={animationContent} custom={6}>
+								{production_countries[0]?.name && <TableRow variants={animationContent} custom={4}><span>Country</span> <span>{production_countries[0].name}</span></TableRow>}
+								{release_date !== NaN && <TableRow variants={animationContent} custom={5}><span>Release</span> <span>{getReleaseDate(release_date)}</span></TableRow>}
+								{runtime !== 0 && <TableRow variants={animationContent} custom={6}><span>Duration</span> <span>{hours + ':' + minutes}</span></TableRow>}
+								{popular !== NaN && <TableRow variants={animationContent} custom={7}>
 										<span>Views</span>
 										<span>{popular.toLocaleString()}</span>
 									</TableRow>
 								}
 								{
 									genres !== NaN && genres.length > 0 &&
-									<TableRow variants={animationContent} custom={7}>
+									<TableRow variants={animationContent} custom={8}>
 										<span>Genres</span> 
 										<GenresList>
 											{
@@ -373,7 +373,7 @@ const Movie = ({movie}) => {
 								}
 								
 							</Table>
-							<Text variants={animationContent} custom={8}>
+							<Text variants={animationContent} custom={9}>
 								{overview}
 							</Text>
 						</MovieInformation>
@@ -382,7 +382,6 @@ const Movie = ({movie}) => {
 						initial="hidden"
 						whileInView="visible"
 						viewport={{once: true}}
-						custom={3}
 						variants={animationImagePageMovie}
 					>
 						<VideoPlayer src="giXco2jaZ_4"/>
