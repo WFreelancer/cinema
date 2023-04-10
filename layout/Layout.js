@@ -41,7 +41,7 @@ const Layout = ({children}) => {
 					{children}
 				</Main>
 				<Footer/>
-				<Cookies/>
+				{Cookies && <Cookies/>}
 			</Wrapper>
 		</>
 	)

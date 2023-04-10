@@ -1,11 +1,9 @@
 export const animationImage = {
 	hidden: {
-		scale: 1.5,
 		opacity: 0,
 		clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
 	},
 	visible: delay => ({
-		scale: 1.05,
 		opacity: 1,
 		clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
 		transition: {
