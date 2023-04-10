@@ -1,15 +1,13 @@
 import { useLayoutEffect, useState} from 'react';
 import { useScroll, useTransform, useSpring } from 'framer-motion';
+import useWindowSize from '../helpers/windowSize';
 
 const HeightEl = (ref, payload) => {
 	const [elementTop, setElementTop] = useState(0);
 	const [clientHeight, setClientHeight] = useState(0);
 	const { scrollY } = useScroll();
-	let mobile;
-	if (typeof window !== 'undefined') {
-		mobile = window && window.matchMedia('(min-width: 480)')
-	}
-	const heightEl = mobile ? 50 : 70;
+	const {width} = useWindowSize();
+	const heightEl = width > 768 ? 70: 50
 
 
 	const initial = elementTop - clientHeight

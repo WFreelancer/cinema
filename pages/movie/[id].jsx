@@ -271,26 +271,19 @@ const getReleaseDate = (date) => {
 }
 
 const Movie = ({movie}) => {
-	const {
-		overview,
-		popularity,
-		poster_path,
-		release_date,
-		title,
-		runtime,
-		genres = [],
-		production_countries = []
-	} = movie;
-	const popular = parseInt(popularity, 10);
+	const popular = movie && parseInt(movie.popularity, 10);
 	const dispatch = useDispatch();
-	const hours = Math.trunc(runtime/60);
-	const minutes = runtime % 60;
+	const hours = movie && Math.trunc(movie.runtime/60);
+	const minutes = movie && movie.runtime % 60;
+
 
 	return(
 		<>
+		{movie &&
+			<>
 			<Head>
-				<title>{title}</title>
-				<meta name="description" content={title} />
+				<title>{movie.title}</title>
+				<meta name="description" content={movie.title} />
 			</Head>
 			<Wrapper
 				initial={{opacity: 0}}
@@ -298,7 +291,7 @@ const Movie = ({movie}) => {
 				exit={{opacity: 0}}
 			>
 				<Container>
-					<BreadCrumbs>{title}</BreadCrumbs>
+					<BreadCrumbs>{movie.title}</BreadCrumbs>
 					<MovieContent>
 						<MovieAside >
 							<ImageWrapper
@@ -310,8 +303,8 @@ const Movie = ({movie}) => {
 								>
 								<ImageEl
 									fill
-									src={poster_path ? 'https://image.tmdb.org/t/p/w500' + (poster_path) : error}
-									alt={title}
+									src={movie.poster_path ? 'https://image.tmdb.org/t/p/w500' + (movie.poster_path) : error}
+									alt={movie.title}
 								/>
 							</ImageWrapper>
 							<Rating
@@ -350,23 +343,23 @@ const Movie = ({movie}) => {
 							</MButton>
 						</MovieAside>
 						<MovieInformation initial="hidden" whileInView="visible" viewport={{once: true}}>
-							<MTitle textAlign="left" marginBottom="3vh" variants={animationContent} custom={3} type="h3">{title}</MTitle>
+							<MTitle textAlign="left" marginBottom="3vh" variants={animationContent} custom={3} type="h3">{movie.title}</MTitle>
 							<Table>
-								{production_countries[0]?.name && <TableRow variants={animationContent} custom={4}><span>Country</span> <span>{production_countries[0].name}</span></TableRow>}
-								{release_date !== NaN && <TableRow variants={animationContent} custom={5}><span>Release</span> <span>{getReleaseDate(release_date)}</span></TableRow>}
-								{runtime !== 0 && <TableRow variants={animationContent} custom={6}><span>Duration</span> <span>{hours + ':' + minutes}</span></TableRow>}
+								{movie.production_countries[0]?.name && <TableRow variants={animationContent} custom={4}><span>Country</span> <span>{movie.production_countries[0].name}</span></TableRow>}
+								{movie.release_date !== NaN && <TableRow variants={animationContent} custom={5}><span>Release</span> <span>{getReleaseDate(movie.release_date)}</span></TableRow>}
+								{movie.runtime !== 0 && <TableRow variants={animationContent} custom={6}><span>Duration</span> <span>{hours + ':' + minutes}</span></TableRow>}
 								{popular !== NaN && <TableRow variants={animationContent} custom={7}>
 										<span>Views</span>
 										<span>{popular.toLocaleString()}</span>
 									</TableRow>
 								}
 								{
-									genres !== NaN && genres.length > 0 &&
+									movie.genres !== NaN && movie.genres.length > 0 &&
 									<TableRow variants={animationContent} custom={8}>
 										<span>Genres</span> 
 										<GenresList>
 											{
-												genres.map(genre => <li key={genre.id}>{genre.name}</li>)
+												movie.genres.map(genre => <li key={genre.id}>{genre.name}</li>)
 											}
 										</GenresList>
 									</TableRow>
@@ -374,7 +367,7 @@ const Movie = ({movie}) => {
 								
 							</Table>
 							<Text variants={animationContent} custom={9}>
-								{overview}
+								{movie.overview && movie.overview}
 							</Text>
 						</MovieInformation>
 					</MovieContent>
@@ -389,17 +382,17 @@ const Movie = ({movie}) => {
 				</Container>
 				<PopupVideo src="giXco2jaZ_4"/>
 			</Wrapper>
+			</>
+		}
 		</>
-		
 	) 
 }
 
-// eslint-disable-next-line
 export const getStaticPaths = async() => {
 	const {data: movies} = await axios.get(getMovie(1));
 
 	return{
-		paths: movies.results.map(movie => '/movie/' + movie.id),
+		paths: movies.results.flatMap(movie => '/movie/' + movie.id),
 		fallback: true
 	}
 }

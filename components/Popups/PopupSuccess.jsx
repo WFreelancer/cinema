@@ -159,6 +159,10 @@ const PopupImageHuman = styled.div`
 	left:50%;
 	transform:translate(-50%, -50%);
 
+	img{
+		object-fit: contain;
+	}
+
 	@media (min-width: 1800px){
 		width: 150px;
 	}
@@ -181,6 +185,10 @@ const PopupImagePlanet = styled.div`
 	width: 200px;
 	bottom: -20px;
 	right: -50px;
+
+	img{
+		object-fit: contain;
+	}
 
 	@media (min-width: 1800px){
 		width: 270px;
@@ -218,10 +226,10 @@ const PopupSuccess = () => {
 							<Image src={space} alt='space' fill/>
 						</PopupImageSpace>
 						<PopupImageHuman>
-							<Image src={human} alt='human' layout="responsive" contain='true'/>
+							<Image src={human} alt='human'/>
 						</PopupImageHuman>
 						<PopupImagePlanet>
-							<Image src={planet} alt='planet' layout="responsive" contain='true'/>
+							<Image src={planet} alt='planet'/>
 						</PopupImagePlanet>
 					</PopupImage>
 					<PopupTitle>Success</PopupTitle>

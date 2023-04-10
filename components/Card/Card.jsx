@@ -157,7 +157,7 @@ const getReleaseDate = (date) => {
 }
 // eslint-disable-next-line
 const Card = forwardRef((props, ref) => {
-	const {backdrop_path, poster_path, title, release_date, overview, popularity, id} = props;
+	const {poster_path, title, release_date, overview, popularity, id} = props;
 	const popular = parseInt(popularity, 10);
 
 	return(
@@ -183,7 +183,7 @@ const Card = forwardRef((props, ref) => {
 					</Figcaption> 
 				</Figure>
 				<TitleEl>{title}</TitleEl>
-				<Text>{overview.slice(0, 60)}...</Text>
+				<Text>{overview && overview.slice(0, 60)}...</Text>
 				{release_date && <YearEl><span>Release</span> {getReleaseDate(release_date)}</YearEl>}
 			</CardWrapper>
 		</Link>

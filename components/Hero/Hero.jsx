@@ -129,7 +129,7 @@ const Hero = ({hero}) => {
 					{separateTitle[1]}
 				</MTitle>
 				<Text variants={animationContent} custom={4} delay={0.5} style={{opacity: 0}}>
-					{overview.slice(0, 157)}...
+					{overview && overview.slice(0, 157)}...
 				</Text>
 				<Actions>
 					<MButton style={{opacity: 0}}
