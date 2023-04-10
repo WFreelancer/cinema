@@ -281,6 +281,10 @@ const FixedRoundedBody = styled.div`
 
 	@media (max-width: 550px){
 		width: 20vw;
+		${({menuOpen}) => menuOpen &&`
+			width: 0vw;
+		`
+		}
 	}
 
 	${({menuOpen}) => menuOpen &&`
