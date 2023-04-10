@@ -15,9 +15,6 @@ const MovieWrapper = styled.section``
 const MovieContent = styled.div`
 	text-align:center;
 	padding-bottom: 10vh;
-	@media (max-width: 1024px){
-		padding: 6vh 0;
-	}
 `
 const MovieContentFooter = styled.div`
 	height: clamp(9em, 12vw, 11em);

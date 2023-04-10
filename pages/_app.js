@@ -1,9 +1,12 @@
 import React from 'react'
+import { Lexend, Roboto } from '@next/font/google'
 import {createGlobalStyle} from 'styled-components';
 import NextNProgress from "../components/Loader";
 import {Provider} from 'react-redux'
 import {store} from '../store/index'
-// @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400&display=swap');
+
+const lexend = Lexend({weight: ['300', '400', '500'], subsets: ['latin'] });
+const roboto = Roboto({weight: ['400', '700'],subsets: ['latin']});
 
 const GlobalStyle = createGlobalStyle`
 	* {
@@ -58,7 +61,7 @@ const GlobalStyle = createGlobalStyle`
 		-ms-text-size-adjust: 100%;
 		-moz-text-size-adjust: 100%;
 		-webkit-text-size-adjust: 100%;
-		font-family: 'Roboto', sans-serif;
+		font-family: ${roboto.style.fontFamily}, sans-serif;
 		color: var(--bg-dark);
 		height: 100%;
 		
@@ -171,7 +174,7 @@ const GlobalStyle = createGlobalStyle`
 		--orange: #FF4C1C;
 		--color-border-light: rgba(255, 255, 255, 0.2);
 		--color-border-dark: rgba(28, 29, 32, 0.175);
-		--font-lexend: 'Lexend', sans-serif;
+		--font-lexend: ${lexend.style.fontFamily}, sans-serif;
 
 		--fw-light: 300;
 		--fw-regular: 400;

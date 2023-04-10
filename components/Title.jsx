@@ -13,6 +13,7 @@ const TitleBig = styled.h1`
 	font-size: calc(clamp(3.25em, 7vw, 8em) * .875);
 
 	@media (max-width: 480px){
+		font-size: calc(clamp(3.7em, 7vw, 8em) * .875);
 		margin-bottom: ${({marginBottom}) => marginBottom && `4vh`};
 	}
 `;
@@ -24,6 +25,10 @@ const TitleMiddle = styled.h2`
 	margin-bottom: ${({marginBottom}) => marginBottom ? marginBottom : `4vh`};
 	color: ${({light}) => light ? 'var(--white)' : `inherit`};
 	font-size: calc(clamp(2.5em, 6vw, 7em) * .775);
+
+	@media (max-width: 480px){
+		font-size: calc(clamp(3em, 6vw, 7em) * .775);
+	}
 `;
 const TitleSmall = styled.h3`
 	z-index: 1;

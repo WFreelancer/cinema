@@ -15,6 +15,7 @@ const FilterWrapper = styled(motion.section)`
 	@media (max-width: 1024px){
 		padding: 6vh 0;
 	}
+
 `
 const Text = styled(motion.p)`
 	text-align: center;

@@ -35,7 +35,7 @@ const LinkEl = styled.a`
 	color: var(--white);
 	box-shadow: inset 0px 0px 0px 1px var(--color-border-light);
 	overflow: hidden;
-	font-family: 'Lexend', sans-serif;
+	font-family: var(--font-lexend);
 
 	width: ${({stretch}) => stretch ? `100%` : `auto`};
 
@@ -121,7 +121,7 @@ const CustomButton = styled.div`
 	box-shadow: inset 0px 0px 0px 1px var(--color-border-light);
 	overflow: hidden;
 	width: ${({stretch}) => stretch ? `100%` : `auto`};
-	font-family: 'Lexend', sans-serif;
+	font-family: var(--font-lexend);
 	@media (min-width: 1800px){
 		min-width: 250px;
 		font-size: 1.5rem;
