@@ -24,6 +24,7 @@ const FixedNav = styled.nav`
 	}
 
 	@media (max-width: 550px){
+		transform: translate(calc(100% + 20vw),0) rotate(0.001deg);
 		width: 100%;
 	}
 
