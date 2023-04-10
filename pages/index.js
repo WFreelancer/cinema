@@ -37,7 +37,7 @@ const Home = ({HeroSsrFetch, MoviesSsrFetch}) => {
 };
 
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
 	const {data: hero} = await axios.get(getMovieByName('Puss in Boots: The Last Wish'));
 	const {data: movies} = await axios.get(getMovie(1));
 
