@@ -2,7 +2,8 @@ import React from 'react'
 import {createGlobalStyle} from 'styled-components';
 import NextNProgress from "../components/Loader";
 import {Provider} from 'react-redux'
-import {store} from '../store/index'
+import {store, persistor} from '../store/index'
+import { PersistGate } from 'redux-persist/integration/react'
 
 const GlobalStyle = createGlobalStyle`
 	@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400&display=swap');
@@ -247,9 +248,11 @@ export default function App({ Component, pageProps }) {
 	
 	return (
 		<Provider store={store}>
-			<Component {...pageProps} />
-			<GlobalStyle/>
-			<NextNProgress />
+			<PersistGate loading={null} persistor={persistor}>
+				<Component {...pageProps} />
+				<GlobalStyle/>
+				<NextNProgress />
+			</PersistGate>
 		</Provider>
 	)
 }
