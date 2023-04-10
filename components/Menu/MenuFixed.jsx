@@ -24,8 +24,12 @@ const FixedNav = styled.nav`
 	}
 
 	@media (max-width: 550px){
-		transform: translate(calc(100% + 20vw),0) rotate(0.001deg);
+		transform: translate(calc(100% + 20vw), 0px) rotate(0.001deg);
 		width: 100%;
+		${({menuOpen}) => menuOpen &&`
+			transform: translate(0,0) rotate(0.001deg);
+		`
+		}
 	}
 
 	::-webkit-scrollbar {
@@ -42,7 +46,7 @@ const FixedNavContent = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 	height: 100%;
-	padding: 15vh 7.5vw 10vh 7.5vw;
+	padding: 15vh 7.5vw 9vh 7.5vw;
 	position: relative;
 	transform: translate(0,0) rotate(0.001deg);
 	transition: all .6s cubic-bezier(.7, 0, .2, 1);
@@ -50,12 +54,17 @@ const FixedNavContent = styled.div`
 	z-index: 2;
 
 	@media (min-width: 1800px){
-		padding: 20vh 10.5vw 13vh 10.5vw;
+		padding: 20vh 10.5vw 12vh 10.5vw;
 	}
 
 	@media (max-width: 1024px){
-		padding: 15vh 9.5vw 10vh 9.5vw;
+		padding: 15vh 9.5vw 7vh 9.5vw;
 	}
+
+	@media (max-width: 550px){
+		padding: 15vh 6vw 7vh 6vw;
+	}
+
 
 	${({menuOpen}) => menuOpen &&`
 			transform: translate(0,0) rotate(0.001deg);
@@ -165,6 +174,10 @@ const FixedLink = styled.a`
 			}
 		}
 	}
+
+	@media (max-width: 550px){
+		line-height: unset;
+	}
 	
 	${({activeLink}) => activeLink &&`
 		&:before{
@@ -183,6 +196,11 @@ const Social = styled.div`
 		margin-bottom: 3vh;
 		text-transform: uppercase;
 		color: var(--white);
+	}
+
+	@media (max-width: 1024px){
+		padding-top: 20px;
+		border-top: 1px solid var(--color-border-light);
 	}
 `
 const SocialList = styled.div`
