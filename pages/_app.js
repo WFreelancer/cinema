@@ -1,11 +1,10 @@
+import React from 'react'
 import {createGlobalStyle} from 'styled-components';
 import NextNProgress from "../components/Loader";
 import {Provider} from 'react-redux'
-import {store, persistor} from '../store/index'
-import { PersistGate } from 'redux-persist/integration/react'
+import {store} from '../store/index'
 
 const GlobalStyle = createGlobalStyle`
-	// @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 	@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400&display=swap');
 	* {
 		padding: 0px;
@@ -244,13 +243,13 @@ const GlobalStyle = createGlobalStyle`
 	}
 `
 export default function App({ Component, pageProps }) {
+	if (!process.browser) React.useLayoutEffect = React.useEffect;
+	
 	return (
 		<Provider store={store}>
-			<PersistGate loading={null} persistor={persistor}>
-				<Component {...pageProps} />
-				<GlobalStyle/>
-				<NextNProgress />
-			</PersistGate>
+			<Component {...pageProps} />
+			<GlobalStyle/>
+			<NextNProgress />
 		</Provider>
 	)
 }

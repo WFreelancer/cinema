@@ -5,7 +5,10 @@ const HeightEl = (ref, payload) => {
 	const [elementTop, setElementTop] = useState(0);
 	const [clientHeight, setClientHeight] = useState(0);
 	const { scrollY } = useScroll();
-	const mobile = window && window.matchMedia('(min-width: 480)');
+	let mobile;
+	if (typeof window !== 'undefined') {
+		mobile = window && window.matchMedia('(min-width: 480)')
+	}
 	const heightEl = mobile ? 50 : 70;
 
 
