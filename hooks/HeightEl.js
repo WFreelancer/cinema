@@ -7,7 +7,7 @@ const HeightEl = (ref, payload) => {
 	const [clientHeight, setClientHeight] = useState(0);
 	const { scrollY } = useScroll();
 	const {width} = useWindowSize();
-	const heightEl = width > 768 ? 70: 50
+	const heightEl = width > 1800 ? 90 : width > 768 ? 70 : 50;
 
 
 	const initial = elementTop - clientHeight
