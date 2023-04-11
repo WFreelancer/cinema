@@ -92,11 +92,6 @@ const GlobalStyle = createGlobalStyle`
 		scroll-behavior: smooth;
 	}
 
-	#__next {
-		overflow-y: auto;
-	}
-
-
 	
 	p{
 		font-size: 1em;
