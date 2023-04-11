@@ -16,6 +16,7 @@ const HeroWrapper = styled(motion.section)`
 	overflow: hidden;
 	width: 100%;
 	min-height: calc(100vh - 146px);
+	min-height: -webkit-fill-available;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -23,14 +24,17 @@ const HeroWrapper = styled(motion.section)`
 
 	@media (min-width: 1800px){
 		min-height: calc(100vh - 216px);
+		min-height: -webkit-fill-available;
 	}
 
 	@media (max-width: 1024px){
 		min-height: calc(100vh - 126px);
+		min-height: -webkit-fill-available;
 	}
 
 	@media (max-width: 768px){
 		min-height: calc(100vh - 116px);
+		min-height: -webkit-fill-available;
 	}
 `
 
