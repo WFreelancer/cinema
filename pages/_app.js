@@ -54,8 +54,13 @@ const GlobalStyle = createGlobalStyle`
 	section {
 		display: block;
 	}
+	html{
+		height: -webkit-fill-available;
+	}
 
 	body {
+		height: 100vh;
+		height: -webkit-fill-available;
 		-webkit-font-smoothing: antialiased;
 		line-height: 1;
 		-ms-text-size-adjust: 100%;
@@ -85,9 +90,13 @@ const GlobalStyle = createGlobalStyle`
 	#__next {
 		height: 100%;
 		scroll-behavior: smooth;
-		min-height: -webkit-fill-available;
-		height: -webkit-fill-available;
 	}
+
+	#__next {
+		overflow-y: auto;
+	}
+
+
 	
 	p{
 		font-size: 1em;
