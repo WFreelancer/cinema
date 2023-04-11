@@ -17,6 +17,7 @@ const HeroWrapper = styled(motion.section)`
 	width: 100%;
 	min-height: calc(100vh - 146px);
 	min-height: -webkit-fill-available;
+	height: -webkit-fill-available;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

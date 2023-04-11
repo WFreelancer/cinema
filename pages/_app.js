@@ -86,6 +86,7 @@ const GlobalStyle = createGlobalStyle`
 		height: 100%;
 		scroll-behavior: smooth;
 		min-height: -webkit-fill-available;
+		height: -webkit-fill-available;
 	}
 	
 	p{
