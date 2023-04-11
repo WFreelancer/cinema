@@ -12,6 +12,7 @@ const FixedNav = styled.nav`
 	right: 0;
 	top: 0;
 	height: 100vh;
+	min-height: -webkit-fill-available;
 	background: var(--bg-dark);
 	z-index: 100;
 	transform: translate(calc(100% + 6vw),0) rotate(0.001deg);
