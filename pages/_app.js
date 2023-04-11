@@ -85,6 +85,7 @@ const GlobalStyle = createGlobalStyle`
 	#__next {
 		height: 100%;
 		scroll-behavior: smooth;
+		min-height: -webkit-fill-available;
 	}
 	
 	p{
