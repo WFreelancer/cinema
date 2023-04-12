@@ -15,6 +15,10 @@ const GlobalStyle = createGlobalStyle`
 		border: 0px;
 
 	}
+
+	html{
+		height: -webkit-fill-available;
+	}
 	
 	input[type=checkbox],
 	button,
