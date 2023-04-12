@@ -31,7 +31,6 @@ const HeroWrapper = styled(motion.section)`
 
 	@media (max-width: 768px){
 		min-height: calc(100vh - 116px);
-		min-height: 300px;
 	}
 `
 

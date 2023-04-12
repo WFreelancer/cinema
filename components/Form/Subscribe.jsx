@@ -41,7 +41,6 @@ const FormWrapper = styled(motion.div)`
 	@media (max-width: 480px){
 		padding: 8vh 0 5vh 0;
 		min-height: calc(100vh - 115px);
-		min-height: 300px;
 	}
 `
 
