@@ -163,7 +163,6 @@ const GlobalStyle = createGlobalStyle`
 	}
 
 	#__next {
-		--app-height: 100%;
 		--white: #fff;
 		--grey: #75797A;
 		--grey-dark: #353B48;
