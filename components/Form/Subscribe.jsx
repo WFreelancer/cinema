@@ -22,7 +22,6 @@ const FormWrapper = styled(motion.div)`
 	padding: 13vh 0 10vh 0;
 	overflow: hidden;
 	min-height: calc(100vh - 132px);
-	min-height: -webkit-fill-available;
 	display: flex;
 	align-items: center;
 

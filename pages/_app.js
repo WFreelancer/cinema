@@ -15,10 +15,6 @@ const GlobalStyle = createGlobalStyle`
 		border: 0px;
 
 	}
-
-	html{
-		height: -webkit-fill-available;
-	}
 	
 	input[type=checkbox],
 	button,
@@ -167,6 +163,7 @@ const GlobalStyle = createGlobalStyle`
 	}
 
 	#__next {
+		--app-height: 100%;
 		--white: #fff;
 		--grey: #75797A;
 		--grey-dark: #353B48;

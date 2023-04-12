@@ -10,13 +10,14 @@ import useWindowSize from '../../helpers/windowSize';
 import poster from '../../public/Puss-in-Boots-The-Last-Wish-Featured.webp';
 import posterMobile from '../../public/main.jpg';
 import PopupVideo from '../Popups/PopupVideo';
+import { useEffect } from 'react';
 
 const HeroWrapper = styled(motion.section)`
 	position: relative;
 	overflow: hidden;
 	width: 100%;
-	min-height: calc(100vh - 146px);
-	min-height: -webkit-fill-available;
+	min-height: calc(height: 100vh; - 146px);
+	min-height: calc(var(--app-height) - 146px);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -24,14 +25,17 @@ const HeroWrapper = styled(motion.section)`
 
 	@media (min-width: 1800px){
 		min-height: calc(100vh - 216px);
+		min-height: calc(var(--app-height) - 216px);
 	}
 
 	@media (max-width: 1024px){
 		min-height: calc(100vh - 126px);
+		min-height: calc(var(--app-height) - 126px);
 	}
 
 	@media (max-width: 768px){
 		min-height: calc(100vh - 116px);
+		min-height: calc(var(--app-height) - 116px);
 	}
 `
 
@@ -116,7 +120,16 @@ const Hero = ({hero}) => {
 	const {title, overview, id} = hero;
 	const dispatch = useDispatch();
 	const {width} = useWindowSize();
-	const separateTitle = title.split(':')
+	const separateTitle = title.split(':');
+
+	useEffect(() => {
+		const appHeight = () => {
+			const doc = document.documentElement
+			doc.style.setProperty('--app-height', `${window.innerHeight}px`)
+		}
+		window.addEventListener('resize', appHeight)
+		appHeight()
+	}, [])
 
 	return (
 		<HeroWrapper initial="hidden" whileInView="visible" viewport={{once: true}}>
