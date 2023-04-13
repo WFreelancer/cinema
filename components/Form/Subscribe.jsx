@@ -21,27 +21,26 @@ const FormWrapper = styled(motion.div)`
 	position: relative;
 	padding: 13vh 0 10vh 0;
 	overflow: hidden;
-	height: calc(100vh - 132px);
+	min-height: calc(100vh - 132px);
 	display: flex;
 	align-items: center;
 
 	@media (min-width: 1800px){
-		height: calc(100vh - 188px);
+		min-height: calc(100vh - 188px);
 	}
 
 	@media (max-width: 1024px){
 		padding: 10vh 0 7vh 0;
-		height: calc(100vh - 128px);
+		min-height: calc(100vh - 128px);
 	}
 
 	@media (max-width: 768px){
-		height: calc(100vh - 124px);
+		min-height: calc(100vh - 124px);
 	}
 
 	@media (max-width: 480px){
 		padding: 8vh 0 5vh 0;
-		height: calc(100vh - 115px);
-		height: calc(100svh - 115px);
+		min-height: calc(100vh - 115px);
 	}
 `
 

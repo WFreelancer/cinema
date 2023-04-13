@@ -15,23 +15,22 @@ const HeroWrapper = styled(motion.section)`
 	position: relative;
 	overflow: hidden;
 	width: 100%;
-	height: calc(100vh - 146px);
+	min-height: calc(100vh - 146px);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	background-color: var(--bg-dark);
 
 	@media (min-width: 1800px){
-		height: calc(100vh - 216px);
+		min-height: calc(100vh - 216px);
 	}
 
 	@media (max-width: 1024px){
-		height: calc(100vh - 126px);
+		min-height: calc(100vh - 126px);
 	}
 
 	@media (max-width: 768px){
-		height: calc(100vh - 116px);
-		height: calc(100svh - 116px);
+		min-height: calc(100vh - 116px);
 	}
 `
 
