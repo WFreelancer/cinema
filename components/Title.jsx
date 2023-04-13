@@ -8,6 +8,7 @@ const TitleBig = styled.h1`
 	text-align: ${({textAlign}) => textAlign ? textAlign : `center`};
 	font-weight: var(--fw-regular);
 	margin-bottom: ${({marginBottom}) => marginBottom ? marginBottom : `4vh`};
+	margin-bottom: ${({marginBottom}) => marginBottom ? marginBottom : `4svh`};
 	color: ${({light}) => light ? 'var(--white)' : `inherit`};
 
 	font-size: calc(clamp(3.25em, 7vw, 8em) * .875);
@@ -15,6 +16,7 @@ const TitleBig = styled.h1`
 	@media (max-width: 480px){
 		font-size: calc(clamp(3.7em, 7vw, 8em) * .875);
 		margin-bottom: ${({marginBottom}) => marginBottom && `4vh`};
+		margin-bottom: ${({marginBottom}) => marginBottom && `4svh`};
 	}
 `;
 const TitleMiddle = styled.h2`
@@ -23,6 +25,7 @@ const TitleMiddle = styled.h2`
 	text-align: ${({textAlign}) => textAlign ? textAlign : `center`};
 	font-weight: var(--fw-regular);
 	margin-bottom: ${({marginBottom}) => marginBottom ? marginBottom : `4vh`};
+	margin-bottom: ${({marginBottom}) => marginBottom ? marginBottom : `4svh`};
 	color: ${({light}) => light ? 'var(--white)' : `inherit`};
 	font-size: calc(clamp(2.5em, 6vw, 7em) * .775);
 
@@ -36,6 +39,7 @@ const TitleSmall = styled.h3`
 	text-align: ${({textAlign}) => textAlign ? textAlign : `center`};
 	font-weight: var(--fw-regular);
 	margin-bottom: ${({marginBottom}) => marginBottom ? marginBottom : `4vh`};
+	margin-bottom: ${({marginBottom}) => marginBottom ? marginBottom : `4svh`};
 	color: ${({light}) => light ? 'var(--white)' : `inherit`};
 	font-size: calc(clamp(2em, 5vw, 6em) * .675);
 `;
