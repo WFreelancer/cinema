@@ -35,12 +35,12 @@ const FormWrapper = styled(motion.div)`
 	}
 
 	@media (max-width: 768px){
-		min-height: ${({fullheight}) => fullheight ? `calc(${fullheight}px - 124px)` : `calc(100vh - 124px)`};
+		min-height: calc(100vh - 124px);
 	}
 
 	@media (max-width: 480px){
 		padding: 8vh 0 5vh 0;
-		min-height: ${({fullheight}) => fullheight ? `calc(${fullheight}px - 115px)` : `calc(100vh - 115px)`};
+		min-height: calc(100vh - 115px);
 	}
 `
 
@@ -103,7 +103,6 @@ const Subscribe = () => {
 		mode: 'onBlur',
 		resolver: yupResolver(schema),
 	});
-	const [fullHeight, setFullHeight] = useState('100vh');
 	const [elementTop, setElementTop] = useState(0);
 	const [clientHeight, setClientHeight] = useState(0);
 	const { scrollY } = useScroll();
@@ -116,7 +115,6 @@ const Subscribe = () => {
 		const onResize = () => {
 			setElementTop(ref && ref.current.getBoundingClientRect().top + window.scrollY || window.pageYOffset);
 			setClientHeight(window.innerHeight);
-			setFullHeight(window.innerHeight);
 		};
 		onResize();
 		window.addEventListener('resize', onResize);
@@ -133,7 +131,7 @@ const Subscribe = () => {
 	};
 
 	return(
-		<FormWrapper initial="hidden" whileInView="visible" viewport={{once: true, amount: 0.2}} fullheight={fullHeight}>
+		<FormWrapper initial="hidden" whileInView="visible" viewport={{once: true, amount: 0.2}}>
 			<OverlayGradient/>
 			<Container>
 				<FormContent ref={ref} style={{y}}>

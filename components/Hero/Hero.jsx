@@ -27,11 +27,11 @@ const HeroWrapper = styled(motion.section)`
 	}
 
 	@media (max-width: 1024px){
-		min-height: ${({fullheight}) => fullheight ? `calc(${fullheight}px - 126px)` : `calc(100vh - 126px)`};
+		min-height: calc(100vh - 126px);
 	}
 
 	@media (max-width: 768px){
-		min-height: ${({fullheight}) => fullheight ? `calc(${fullheight}px - 116px)` : `calc(100vh - 116px)`};
+		min-height: calc(100vh - 116px);
 	}
 `
 
@@ -117,20 +117,9 @@ const Hero = ({hero}) => {
 	const dispatch = useDispatch();
 	const {width} = useWindowSize();
 	const separateTitle = title.split(':');
-	const [fullHeight, setFullHeight] = useState('100vh');
-
-
-	useLayoutEffect(() => {
-		const onResize = () => setFullHeight(window.innerHeight);
-		onResize();
-		window.addEventListener('resize', onResize);
-		return () => window.removeEventListener('resize', onResize);
-		// eslint-disable-next-line
-	}, []);
-
 
 	return (
-		<HeroWrapper initial="hidden" whileInView="visible" viewport={{once: true}} fullheight={fullHeight}>
+		<HeroWrapper initial="hidden" whileInView="visible" viewport={{once: true}}>
 			<HeroImage variants={animationImage} delay={0.3}>
 				<Image src={width > 768 ? poster: posterMobile} alt={title} fill priority/>
 			</HeroImage>
