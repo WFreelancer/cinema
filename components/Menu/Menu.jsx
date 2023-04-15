@@ -115,4 +115,4 @@ const Menu = ({links}) => {
 	)
 }
 
-export {Menu}
+export {Menu};

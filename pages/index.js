@@ -7,10 +7,10 @@ import {withLayout} from "../layout/Layout";
 import {getMovieByName, getMovie} from '../config';
 import {writeMoviesFiltered} from '../store/movies/actions-movies';
 
-import Hero from '../components/Hero';
-import Filter from '../components/Filter';
-import MoreMovies from '../components/MoreMovie';
-import Subscribe from '../components/Form';
+import Hero from '../components/Hero/Hero';
+import Filter from '../components/Filter/Filter';
+import MoreMovies from '../components/MoreMovie/MoreMovie';
+import Subscribe from '../components/Form/Subscribe';
 
 const Home = ({HeroSsrFetch, MoviesSsrFetch}) => {
 	const dispatch = useDispatch();

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styled from 'styled-components';
 import {useSelector, useDispatch} from 'react-redux';
 import {openPopupTrailer} from '../../store/popup/actions-popup';
@@ -128,4 +129,4 @@ const PopupVideo = ({src, provider}) => {
 	)
 }
 
-export default PopupVideo;
+export default memo(PopupVideo);

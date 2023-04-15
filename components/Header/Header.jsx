@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { memo } from 'react';
 import {HeaderTop} from './HeaderTop'
 import {HeaderBottom} from './HeaderBottom'
 
@@ -22,4 +22,4 @@ const Header = () => {
 	)
 }
 
-export {Header};
+export default memo(Header);

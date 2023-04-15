@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect, memo} from 'react';
 import styled from 'styled-components';
 import { IoCloseSharp } from "react-icons/io5";
 import Image from 'next/image';
@@ -225,4 +225,4 @@ const Cookies = () => {
 	)
 }
 
-export {Cookies};
+export default memo(Cookies);

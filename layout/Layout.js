@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import {motion} from 'framer-motion';
-import {Header} from '../components/Header';
-import {Footer} from '../components/Footer';
-import {Cookies} from '../components/Popups';
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
+import Cookies from '../components/Popups/Cookies';
 import {useSelector, useDispatch} from 'react-redux';
 import {actionSearchMenu} from '../store/search/actions-search';
 

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styled from 'styled-components';
 import {motion} from 'framer-motion';
 import {animationWord} from '../../helpers/Animations';
@@ -136,4 +137,4 @@ const Filter = () => {
 	)
 }
 
-export {Filter};
+export default memo(Filter);

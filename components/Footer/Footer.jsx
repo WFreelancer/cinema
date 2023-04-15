@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { memo } from 'react';
 import {Container} from '../Container'
 import { Logo } from "../Logo";
 
@@ -48,4 +48,4 @@ const Footer = () => {
 	)
 }
 
-export {Footer};
+export default memo(Footer);

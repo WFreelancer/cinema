@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useLayoutEffect, useState } from 'react';
+import { memo } from 'react';
 import Image from 'next/image';
 import {motion} from 'framer-motion';
 import {useDispatch} from 'react-redux';
@@ -161,4 +161,4 @@ const Hero = ({hero}) => {
 	)
 }
 
-export {Hero}
+export default memo(Hero);

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Plyr from "plyr-react";
 import "plyr-react/plyr.css";
 
@@ -25,4 +26,4 @@ const VideoPlayer = (props) => {
 
 
 
-export default VideoPlayer;
+export default memo(VideoPlayer);

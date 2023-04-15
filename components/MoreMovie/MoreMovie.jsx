@@ -1,4 +1,4 @@
-import {useRef, useState} from 'react';
+import {useRef, useState, memo} from 'react';
 import styled from 'styled-components';
 import {motion} from 'framer-motion';
 import {PreloaderIcon} from '../Preloader';
@@ -113,5 +113,5 @@ const MoreMovie = () => {
 	)
 }
 
-export {MoreMovie};
+export default memo(MoreMovie);
 

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styled from 'styled-components';
 import {motion} from 'framer-motion';
 import { useForm } from "react-hook-form";
@@ -180,4 +181,4 @@ const Subscribe = () => {
 	)
 }
 
-export {Subscribe};
+export default memo(Subscribe);
