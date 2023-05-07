@@ -1,18 +1,14 @@
 import styled from 'styled-components';
 import { memo } from 'react';
-import {Container} from '../Container'
+import { Container } from '../Container'
 import { Logo } from "../Logo";
 
 const FooterWrapper = styled.footer`
 	background-color: var(--bg-dark);
-	padding: 50px 0;
-
-	@media (min-width: 1800px){
-		padding: 70px 0;
-	}
+	padding: 7vh 0;
 
 	@media (max-width: 480px){
-		padding: 30px 0;
+		padding: 40px 0;
 	}
 `
 const Row = styled.div`
@@ -28,19 +24,19 @@ const Row = styled.div`
 const Info = styled.span`
 	color: var(--white);
 
-	@media (min-width: 1800px){
-		font-size: 1.5rem;
+	@media (min-width: 1700px){
+		font-size: 1.2rem;
 	}
 	@media (max-width: 480px){
 		margin-top: 15px;
 	}
 `
 const Footer = () => {
-	return(
+	return (
 		<FooterWrapper>
 			<Container>
 				<Row>
-					<Logo/>
+					<Logo />
 					<Info>© Code by Mark Kostenko {new Date().getFullYear()}</Info>
 				</Row>
 			</Container>

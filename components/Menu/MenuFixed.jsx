@@ -2,9 +2,9 @@ import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import {useSelector, useDispatch} from 'react-redux';
-import {actionOpenMenu} from '../../store/menu/actions-menu';
-import {Overlay} from '../Overlay';
+import { useSelector, useDispatch } from 'react-redux';
+import { actionOpenMenu } from '../../store/menu/actions-menu';
+import { Overlay } from '../Overlay';
 import { FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
 
 const FixedNav = styled.nav`
@@ -18,7 +18,7 @@ const FixedNav = styled.nav`
 	transition: transform .8s cubic-bezier(.7, 0, .2, 1);
 	will-change: transform;
 
-	${({menuOpen}) => menuOpen &&`
+	${({ menuOpen }) => menuOpen && `
 			transform: translate(0,0) rotate(0.001deg);
 		`
 	}
@@ -26,10 +26,10 @@ const FixedNav = styled.nav`
 	@media (max-width: 550px){
 		transform: translate(calc(100% + 20vw), 0px) rotate(0.001deg);
 		width: 100%;
-		${({menuOpen}) => menuOpen &&`
+		${({ menuOpen }) => menuOpen && `
 			transform: translate(0,0) rotate(0.001deg);
 		`
-		}
+	}
 	}
 
 	::-webkit-scrollbar {
@@ -53,10 +53,6 @@ const FixedNavContent = styled.div`
 	will-change: transform;
 	z-index: 2;
 
-	@media (min-width: 1800px){
-		padding: 20vh 10.5vw 12vh 10.5vw;
-	}
-
 	@media (max-width: 1024px){
 		padding: 15vh 9.5vw 7vh 9.5vw;
 	}
@@ -66,7 +62,7 @@ const FixedNavContent = styled.div`
 	}
 
 
-	${({menuOpen}) => menuOpen &&`
+	${({ menuOpen }) => menuOpen && `
 			transform: translate(0,0) rotate(0.001deg);
 		`
 	}
@@ -80,6 +76,9 @@ const FixedNavHeader = styled.div`
 		margin-bottom: 3em;
 		text-transform: uppercase;
 		color: var(--white);
+		@media (min-width: 1700px){
+			font-size: 0.8rem;
+		}
 	}
 `
 
@@ -116,10 +115,10 @@ const FixedList = styled.ul`
 			transition-delay: .12s;
 		}
 
-		${({menuOpen}) => menuOpen &&`
+		${({ menuOpen }) => menuOpen && `
 				transform: translate(0,0) rotate(0.001deg);
 			`
-		}
+	}
 		:last-child{
 			margin-bottom: 0px;
 		}
@@ -136,8 +135,8 @@ const FixedLink = styled.a`
 	padding: 5px;
 
 
-	@media (min-width: 1800px){
-		font-size: 4.5em;
+	@media (min-width: 1700px){
+		font-size: 3.5em;
 	}
 
 	&:before{
@@ -179,7 +178,7 @@ const FixedLink = styled.a`
 		line-height: unset;
 	}
 	
-	${({activeLink}) => activeLink &&`
+	${({ activeLink }) => activeLink && `
 		&:before{
 			color: var(--white);
 			transform: none;
@@ -196,6 +195,10 @@ const Social = styled.div`
 		margin-bottom: 3vh;
 		text-transform: uppercase;
 		color: var(--white);
+
+		@media (min-width: 1700px){
+			font-size: 0.8rem;
+		}
 	}
 
 	@media (max-width: 1024px){
@@ -271,11 +274,11 @@ const LinkIcon = styled.a`
 		}
 	}
 
-	@media (min-width: 1800px){
-		width: 65px;
-		height: 65px;
+	@media (min-width: 1700px){
+		width: 50px;
+		height: 50px;
 		svg{
-			font-size: 23px;
+			font-size: 19px;
 		}
 	}
 `
@@ -300,13 +303,13 @@ const FixedRoundedBody = styled.div`
 
 	@media (max-width: 550px){
 		width: 20vw;
-		${({menuOpen}) => menuOpen &&`
+		${({ menuOpen }) => menuOpen && `
 			width: 0vw;
 		`
-		}
+	}
 	}
 
-	${({menuOpen}) => menuOpen &&`
+	${({ menuOpen }) => menuOpen && `
 			width: 0vw;
 		`
 	}
@@ -327,12 +330,12 @@ const RoundedDiv = styled.div`
 
 
 
-const FixedMenu = (({links}) => {
+const FixedMenu = (({ links }) => {
 	const router = useRouter();
 	const menuOpen = useSelector(state => state.menu.menuOpen);
 	const dispatch = useDispatch();
 
-	return(
+	return (
 		<>
 			<FixedNav menuOpen={menuOpen} onClick={(e) => e.stopPropagation()} data-menu-fixed>
 				<FixedRoundedWrapper>
@@ -347,42 +350,42 @@ const FixedMenu = (({links}) => {
 						</FixedNavHeader>
 						<FixedList menuOpen={menuOpen}>
 							{links.map((link, index) => (
-									<li key={index} onClick={() => dispatch(actionOpenMenu(!menuOpen))}>
-										<Link href={link.href} legacyBehavior>
-											<FixedLink data-text={link.title} activeLink={router.pathname === link.href ? true : false}>
-												{link.title}
-											</FixedLink>
-										</Link>
-									</li>
-								)
+								<li key={index} onClick={() => dispatch(actionOpenMenu(!menuOpen))}>
+									<Link href={link.href} legacyBehavior>
+										<FixedLink data-text={link.title} activeLink={router.pathname === link.href ? true : false}>
+											{link.title}
+										</FixedLink>
+									</Link>
+								</li>
+							)
 							)}
 						</FixedList>
 					</Nav>
 					<Social>
-							<h5>Social</h5>
-							<SocialList>
-								<Link href="#" legacyBehavior>
-									<LinkIcon onClick={() => dispatch(actionOpenMenu(!menuOpen))}>
-										<FaFacebookF/>
-									</LinkIcon>
-								</Link>
-								<Link href="#" legacyBehavior>
-									<LinkIcon onClick={() => dispatch(actionOpenMenu(!menuOpen))}>
-										<FaTwitter/>
-									</LinkIcon>
-								</Link>
-								<Link href="#" legacyBehavior>
-									<LinkIcon onClick={() => dispatch(actionOpenMenu(!menuOpen))}>
-										<FaInstagram/>
-									</LinkIcon>
-								</Link>
-							</SocialList>
+						<h5>Social</h5>
+						<SocialList>
+							<Link href="#" legacyBehavior>
+								<LinkIcon onClick={() => dispatch(actionOpenMenu(!menuOpen))}>
+									<FaFacebookF />
+								</LinkIcon>
+							</Link>
+							<Link href="#" legacyBehavior>
+								<LinkIcon onClick={() => dispatch(actionOpenMenu(!menuOpen))}>
+									<FaTwitter />
+								</LinkIcon>
+							</Link>
+							<Link href="#" legacyBehavior>
+								<LinkIcon onClick={() => dispatch(actionOpenMenu(!menuOpen))}>
+									<FaInstagram />
+								</LinkIcon>
+							</Link>
+						</SocialList>
 					</Social>
 				</FixedNavContent>
 			</FixedNav>
-			<Overlay active={menuOpen} toggle={() => dispatch(actionOpenMenu())}/>
+			<Overlay active={menuOpen} toggle={() => dispatch(actionOpenMenu())} />
 		</>
 	)
 })
 
-export {FixedMenu}
+export { FixedMenu }

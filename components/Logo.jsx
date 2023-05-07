@@ -16,8 +16,8 @@ const LogoIcon = styled.a`
 		color: var(--bg-pink);
 	}
 
-	@media (min-width: 1800px){
-		font-size: 3rem;
+	@media (min-width: 1700px){
+		font-size: 2.5rem;
 	}
 
 	@media (max-width: 1024px){

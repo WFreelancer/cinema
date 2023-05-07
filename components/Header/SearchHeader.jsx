@@ -1,10 +1,10 @@
-import {useEffect} from 'react'
-import {useRouter} from 'next/router'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 import styled from 'styled-components';
 import { IoSearchSharp } from "react-icons/io5";
 
-import {useSelector, useDispatch} from 'react-redux';
-import {actionSearchMenu, setSearch} from '../../store/search/actions-search';
+import { useSelector, useDispatch } from 'react-redux';
+import { actionSearchMenu, setSearch } from '../../store/search/actions-search';
 
 
 const Button = styled.button`
@@ -15,10 +15,9 @@ const Button = styled.button`
 	border-radius: 0px 15px 15px 0px;
 	cursor: pointer;
 
-	@media (min-width: 1800px){
-		padding: 5px;
-		border-radius: 0px 25px 25px 0px;
-		height: 45px;
+	@media (min-width: 1700px){
+		border-radius: 0px 20px 20px 0px;
+		height: 35px;
 	};
 
 	@media (max-width: 1024px){
@@ -78,10 +77,10 @@ const IoSearch = styled(IoSearchSharp)`
 	color: var(--white);
 	transition: var(--transition-sm);
 
-	@media (min-width: 1800px){
-		width: 35px;
-		height: 35px;
-		font-size: 1.3rem;
+	@media (min-width: 1700px){
+		width: 30px;
+		height: 30px;
+		font-size: 1.1rem;
 	}
 
 	@media (max-width: 1024px){
@@ -107,9 +106,9 @@ const SearchLabel = styled.label`
 	width: ${props => !props.active ? `0` : `200px`};
 	z-index: 3;
 
-	@media (min-width: 1800px){
-		height: 45.5px;
-		width: ${props => !props.active ? `0` : `320px`};
+	@media (min-width: 1700px){
+		height: 35px;
+		width: ${props => !props.active ? `0` : `250px`};
 	}
 
 	@media (max-width: 1024px){
@@ -150,10 +149,10 @@ const Input = styled.input`
 	border-radius: 15px 0px 0px 15px;
 	border: 2px solid transparent;
 
-	@media (min-width: 1800px){
-		font-size: 1.3rem;
-		padding: 0px 20px;
-		border-radius: 25px 0px 0px 25px;
+	@media (min-width: 1700px){
+		font-size: 1.1rem;
+		padding: 0px 15px;
+		border-radius: 20px 0px 0px 20px;
 		::-webkit-input-placeholder {
 			font-size: 18px;
 		}
@@ -190,16 +189,16 @@ const SearchHeader = () => {
 	const router = useRouter();
 
 	const toggleSearch = async () => {
-		if(search === '') {
+		if (search === '') {
 			dispatch(actionSearchMenu(!openSearch));
 		}
-		else{
+		else {
 			await router.push('/search');
 		}
 	};
 
 	const goToSearchPage = async () => {
-		if(search !== '') {
+		if (search !== '') {
 			await router.push('/search');
 		}
 	}
@@ -222,14 +221,14 @@ const SearchHeader = () => {
 					onKeyDown={(event) => searchByString(event)}
 				/>
 				<ButtonMobile onClick={goToSearchPage} type="button">
-					<IoSearch/>
+					<IoSearch />
 				</ButtonMobile>
-			</SearchLabel> 
+			</SearchLabel>
 			<Button onClick={toggleSearch} active={openSearch} type="button">
-				<IoSearch/>
+				<IoSearch />
 			</Button>
 		</MenuSearch>
 	)
 }
 
-export {SearchHeader};
+export { SearchHeader };

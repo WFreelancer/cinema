@@ -2,10 +2,10 @@ import { forwardRef } from 'react';
 import styled from 'styled-components'
 import Image from 'next/image';
 import Link from 'next/link';
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
 import { IoEyeSharp, IoTimeOutline, IoHeartSharp } from "react-icons/io5";
 import error from '../../public/image-not-found.png';
-import {format, parse} from "date-fns";
+import { format, parse } from "date-fns";
 
 const CardWrapper = styled.a`
 	position: relative;
@@ -45,11 +45,6 @@ const TitleEl = styled.h3`
 	line-height: 1.5rem;
 	font-weight: 500;
 
-	@media (min-width: 1800px){
-		font-size: 1.5rem;
-		line-height: 2rem;
-	}
-
 	@media (max-width: 767px){
 		font-size: 1.2rem;
 		line-height: 1.5rem;
@@ -64,8 +59,8 @@ const YearEl = styled.span`
 		color: var(--bg-dark);
 	}
 
-	@media (min-width: 1800px){
-		font-size: 1.3rem;
+	@media (min-width: 1700px){
+		font-size: 1rem;
 	}
 
 	@media (max-width: 768px){
@@ -78,9 +73,9 @@ const Text = styled.p`
 	font-size: 0.85rem;
 	margin-bottom: 10px;
 
-	@media (min-width: 1800px){
-		font-size: 1.2rem;
-		line-height: 1.8rem;
+	@media (min-width: 1700px){
+		font-size: 1rem;
+		line-height: 1.4rem;
 	}
 	@media (max-width: 768px){
 		font-size: 1rem;
@@ -157,30 +152,30 @@ const getReleaseDate = (date) => {
 }
 // eslint-disable-next-line
 const Card = forwardRef((props, ref) => {
-	const {poster_path, title, release_date, overview, popularity, id} = props;
+	const { poster_path, title, release_date, overview, popularity, id } = props;
 	const popular = parseInt(popularity, 10);
 
-	return(
+	return (
 		<Link href={`/movie/${id}`} legacyBehavior>
 			<CardWrapper ref={ref}>
 				<Figure>
-					<ImageEl src={poster_path ? 'https://image.tmdb.org/t/p/w500' + poster_path : error} alt={title} fill sizes="100%"/>
+					<ImageEl src={poster_path ? 'https://image.tmdb.org/t/p/w500' + poster_path : error} alt={title} fill sizes="100%" />
 					<Figcaption>
 						<Body>
 							<Column>
 								<span>{popular}</span>
-								<IoEyeSharp size={20}/>
+								<IoEyeSharp size={20} />
 							</Column>
 							<Column>
 								<span>01:24</span>
-								<IoTimeOutline size={20}/>
+								<IoTimeOutline size={20} />
 							</Column>
 							<Column>
 								<span>367</span>
-								<IoHeartSharp size={20}/>
+								<IoHeartSharp size={20} />
 							</Column>
 						</Body>
-					</Figcaption> 
+					</Figcaption>
 				</Figure>
 				<TitleEl>{title}</TitleEl>
 				<Text>{overview && overview.slice(0, 60)}...</Text>
@@ -192,4 +187,4 @@ const Card = forwardRef((props, ref) => {
 
 const MCard = motion(Card);
 
-export {Card, MCard}
+export { Card, MCard }

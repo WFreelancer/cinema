@@ -1,15 +1,16 @@
 import Link from 'next/link'
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import {animationContent} from '../helpers/Animations';
+import { animationContent } from '../helpers/Animations';
 
 const BreadCrumbsWrapper = styled(motion.div)`
 	margin-bottom: 20px;
 	color: var(--light-dark);
 
-	@media (min-width: 1800px){
-		font-size: 1.3rem !important;
-		font-size: 1.8rem;
+	@media (min-width: 1700px){
+		font-size: 1.1rem !important;
+		font-size: 1.4rem;
+		margin-bottom: 40px;
 	};
 
 	@media (max-width: 600px){
@@ -26,12 +27,12 @@ const BreadCrumbsWrapper = styled(motion.div)`
 		}
 	}
 `
-const BreadCrumbs = ({children}) => {
+const BreadCrumbs = ({ children }) => {
 	return (
 		<BreadCrumbsWrapper
 			initial="hidden"
 			whileInView="visible"
-			viewport={{once: true}}
+			viewport={{ once: true }}
 			variants={animationContent} custom={1}
 		>
 			<Link href="/">Home</Link> / {children}
@@ -39,4 +40,4 @@ const BreadCrumbs = ({children}) => {
 	)
 }
 
-export {BreadCrumbs};
+export { BreadCrumbs };

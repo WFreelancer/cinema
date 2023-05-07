@@ -1,11 +1,11 @@
-import {useEffect, memo} from 'react';
+import { useEffect, memo } from 'react';
 import styled from 'styled-components';
 import { IoCloseSharp } from "react-icons/io5";
 import Image from 'next/image';
-import {useSelector, useDispatch} from 'react-redux';
-import {openCookies} from '../../store/popup/actions-popup';
+import { useSelector, useDispatch } from 'react-redux';
+import { openCookies } from '../../store/popup/actions-popup';
 
-import {MButton} from '../Button';
+import { MButton } from '../Button';
 import banner from '../../public/cookies.png';
 
 
@@ -41,7 +41,7 @@ const CookiesContent = styled.div`
 		padding: 40px 60px;
 	}
 
-	${({cookies}) => cookies &&`
+	${({ cookies }) => cookies && `
 			transform: translateY(0);
 			@media (max-width: 767px){
 				transform: translateY(0);
@@ -70,7 +70,7 @@ const CookiesClose = styled.div`
 	width: 30px;
 	height: 30px;
 
-	@media (min-width: 1800px){
+	@media (min-width: 1700px){
 		width: 50px;
 		height: 50px;
 	}
@@ -82,7 +82,7 @@ const CookiesImageLeft = styled.div`
 	width: 200px;
 	height: 200px;
 
-	@media (min-width: 1800px){
+	@media (min-width: 1700px){
 		width: 300px;
 		height: 300px;
 	}
@@ -124,7 +124,7 @@ const CookiesImageRight = styled.div`
 	height: 200px;
 	transform: scale(-1, 1);
 
-	@media (min-width: 1800px){
+	@media (min-width: 1700px){
 		width: 300px;
 		height: 300px;
 	}
@@ -170,16 +170,16 @@ const Title = styled.h4`
 	font-size: 1.4rem;
 	text-transform: uppercase;
 	text-align: center;
-	@media (min-width: 1800px){
-		font-size: 2rem;
+	@media (min-width: 1700px){
+		font-size: 1.7rem;
 		margin-bottom: 20px;
 	}
 `
 const Text = styled.p`
 	margin-bottom: 20px;
 	text-align: center;
-	@media (min-width: 1800px){
-		font-size: 1.5rem;
+	@media (min-width: 1700px){
+		font-size: 1.3rem;
 		margin-bottom: 30px;
 	}
 `
@@ -197,7 +197,7 @@ const Cookies = () => {
 		dispatch(openCookies(false));
 	}
 
-	useEffect(() =>{
+	useEffect(() => {
 		setTimeout(() => dispatch(openCookies(storage())), 5000);
 		// eslint-disable-next-line
 	}, [])
@@ -206,11 +206,11 @@ const Cookies = () => {
 	return (
 		<CookiesContent cookies={cookies}>
 			<CookiesClose onClick={() => dispatch(openCookies(false))}>
-				<IoCloseSharp size="100%"/>
+				<IoCloseSharp size="100%" />
 			</CookiesClose>
 			<Body>
 				<CookiesImageLeft>
-					<Image src={banner} alt="banner" fill/>
+					<Image src={banner} alt="banner" fill />
 				</CookiesImageLeft>
 				<Title>We use cookies</Title>
 				<Text>We use cookies to improve our site and your shopping experience, and have recently updated our cookie policy.</Text>
@@ -218,7 +218,7 @@ const Cookies = () => {
 					Accept & close
 				</MButton>
 				<CookiesImageRight>
-					<Image src={banner} alt="banner" fill/>
+					<Image src={banner} alt="banner" fill />
 				</CookiesImageRight>
 			</Body>
 		</CookiesContent>

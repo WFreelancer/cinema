@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { IoSearchSharp } from "react-icons/io5";
 
-import {useSelector, useDispatch} from 'react-redux';
-import {setSearch} from '../../store/search/actions-search';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSearch } from '../../store/search/actions-search';
 
 const MenuSearch = styled.div`
 	display: flex;
@@ -13,9 +13,9 @@ const MenuSearch = styled.div`
 	background: var(--bg-dark);
 	border-radius: 35px;
 
-	@media (min-width: 1800px){
-		height: 65px;
-		border-radius: 40px;
+	@media (min-width: 1700px){
+		height: 55px;
+		border-radius: 35px;
 	}
 `
 
@@ -32,9 +32,9 @@ const Button = styled.button`
 	border-radius: 50%;
 	z-index: 3;
 
-	@media (min-width: 1800px){
-		width: 40px;
-		height: 40px;
+	@media (min-width: 1700px){
+		width: 35px;
+		height: 35px;
 	}
 
 	@media (max-width: 1024px){
@@ -60,8 +60,8 @@ const IoSearch = styled(IoSearchSharp)`
 	color: var(--grey-dark);
 	transition: var(--transition-sm);
 
-	@media (min-width: 1800px){
-		font-size: 1.3rem;
+	@media (min-width: 1700px){
+		font-size: 1.1rem;
 		padding: 2px;
 	}
 
@@ -96,14 +96,14 @@ const Input = styled.input`
 	color: var(--color-text);
 	transition: var(--transition-sm);
 	font-size: 1rem;
-	@media (min-width: 1800px){
-		border-radius: 40px;
-		font-size: 1.3rem;
+	@media (min-width: 1700px){
+		border-radius: 35px;
+		font-size: 1.1rem;
 		::-webkit-input-placeholder {
-			font-size: 18px;
+			font-size: 16px;
 		}
 		:-ms-input-placeholder {
-			font-size: 18px;
+			font-size: 16px;
 		}
 	}
 
@@ -132,8 +132,8 @@ const Input = styled.input`
 	}
 `
 
-const SearchInput = ({searchMovies = Function.prototype}) => {
-	const {searchState} = useSelector(state => state.search);
+const SearchInput = ({ searchMovies = Function.prototype }) => {
+	const { searchState } = useSelector(state => state.search);
 	const dispatch = useDispatch();
 
 
@@ -147,12 +147,12 @@ const SearchInput = ({searchMovies = Function.prototype}) => {
 					onChange={(event) => dispatch(setSearch(event.target.value))}
 					onKeyDown={(event) => event.key === 'Enter' && searchMovies(searchState)}
 				/>
-			</SearchLabel> 
+			</SearchLabel>
 			<Button type="button" onClick={() => searchMovies(searchState)}>
-				<IoSearch/>
+				<IoSearch />
 			</Button>
 		</MenuSearch>
 	)
 }
 
-export {SearchInput};
+export { SearchInput };

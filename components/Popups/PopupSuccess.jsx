@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import {Overlay} from '../Overlay';
-import {Button} from '../Button';
+import { Overlay } from '../Overlay';
+import { Button } from '../Button';
 import { IoCloseSharp } from "react-icons/io5";
 import space from '../../public/space.jpg';
 import human from '../../public/human.png';
 import planet from '../../public/planet.png';
 import Confetti from 'react-confetti';
-import {useSelector, useDispatch} from 'react-redux';
-import {openPopupSuccess} from '../../store/popup/actions-popup';
+import { useSelector, useDispatch } from 'react-redux';
+import { openPopupSuccess } from '../../store/popup/actions-popup';
 
 const Popup = styled.div`
 	position: fixed;
@@ -31,7 +31,7 @@ const Popup = styled.div`
 		display: none;
 	}
 
-	${({openPopup}) => openPopup &&`
+	${({ openPopup }) => openPopup && `
 			pointer-events: all;
 			opacity: 1;
 			visibility: visible;
@@ -68,7 +68,7 @@ const PopupContent = styled.div`
 	transition: var(--transition-md);
 	transform: translateY(100px);
 
-	@media (min-width: 1800px){
+	@media (min-width: 1700px){
 		max-width: 800px;
 	}
 
@@ -77,7 +77,7 @@ const PopupContent = styled.div`
 		padding: 3vh;
 	}
 
-	${({openPopup}) => openPopup &&`
+	${({ openPopup }) => openPopup && `
 			transform: translateY(0px);
 		`
 	}
@@ -219,17 +219,17 @@ const PopupSuccess = () => {
 			<PopupBody>
 				<PopupContent openPopup={messageSuccess} onClick={(e) => e.stopPropagation()}>
 					<PopupClose onClick={() => dispatch(openPopupSuccess(!messageSuccess))}>
-						<IoCloseSharp size="100%"/>
+						<IoCloseSharp size="100%" />
 					</PopupClose>
 					<PopupImage>
 						<PopupImageSpace>
-							<Image src={space} alt='space' fill/>
+							<Image src={space} alt='space' fill />
 						</PopupImageSpace>
 						<PopupImageHuman>
-							<Image src={human} alt='human'/>
+							<Image src={human} alt='human' />
 						</PopupImageHuman>
 						<PopupImagePlanet>
-							<Image src={planet} alt='planet'/>
+							<Image src={planet} alt='planet' />
 						</PopupImagePlanet>
 					</PopupImage>
 					<PopupTitle>Success</PopupTitle>
@@ -241,10 +241,10 @@ const PopupSuccess = () => {
 					</div>
 				</PopupContent>
 			</PopupBody>
-			<Overlay active={messageSuccess}/>
-			{messageSuccess && <Confetti/>}
+			<Overlay active={messageSuccess} />
+			{messageSuccess && <Confetti />}
 		</Popup>
 	)
 }
 
-export {PopupSuccess};
+export { PopupSuccess };

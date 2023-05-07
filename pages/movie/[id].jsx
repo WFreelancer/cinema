@@ -1,22 +1,22 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import styled from 'styled-components';
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 import axios from 'axios';
-import {format, parse} from "date-fns";
-import {useDispatch} from 'react-redux';
-import {openPopupTrailer} from '../../store/popup/actions-popup';
+import { format, parse } from "date-fns";
+import { useDispatch } from 'react-redux';
+import { openPopupTrailer } from '../../store/popup/actions-popup';
 
-import {withLayout} from "../../layout/Layout";
-import {Container} from '../../components/Container';
-import {MButton} from '../../components/Button';
-import {MTitle} from '../../components/Title';
-import {BreadCrumbs} from '../../components/BreadCrumbs';
+import { withLayout } from "../../layout/Layout";
+import { Container } from '../../components/Container';
+import { MButton } from '../../components/Button';
+import { MTitle } from '../../components/Title';
+import { BreadCrumbs } from '../../components/BreadCrumbs';
 import error from '../../public/image-not-found.png';
 import VideoPlayer from '../../components/Player/VideoPlayer';
 import PopupVideo from '../../components/Popups/PopupVideo';
-import {getMovie, currentMovie} from '../../config';
-import {animationContent, animationImagePageMovie} from '../../helpers/Animations';
+import { getMovie, currentMovie } from '../../config';
+import { animationContent, animationImagePageMovie } from '../../helpers/Animations';
 
 
 const Wrapper = styled(motion.section)`
@@ -168,9 +168,9 @@ const MovieInformation = styled(motion.div)`
 	flex-grow: 1;
 `
 const Text = styled(motion.p)`
-	@media (min-width: 1800px){
-		font-size: 1.3rem !important;
-		font-size: 1.8rem;
+	@media (min-width: 1700px){
+		font-size: 1.1rem !important;
+		font-size: 1.5rem;
 	};
 
 	@media (max-width: 600px){
@@ -183,9 +183,9 @@ const Table = styled.div`
 	gap: 20px;
 	margin-bottom: 30px;
 
-	@media (min-width: 1800px){
-		margin-bottom: 40px;
-		gap: 30px;
+	@media (min-width: 1700px){
+		margin-bottom: 35px;
+		gap: 25px;
 	};
 `
 
@@ -199,8 +199,8 @@ const TableRow = styled(motion.div)`
 	}
 
 	span{
-		@media (min-width: 1800px){
-			font-size: 1.3rem;
+		@media (min-width: 1700px){
+			font-size: 1.1rem;
 		};
 
 		@media (max-width: 600px){
@@ -239,9 +239,9 @@ const GenresList = styled.ul`
 				display: none;
 			}
 		}
-		@media (min-width: 1800px){
-			font-size: 1.3rem !important;
-			font-size: 1.8rem;
+		@media (min-width: 1700px){
+			font-size: 1.1rem !important;
+			font-size: 1.5rem;
 		};
 
 		@media (max-width: 600px){
@@ -270,145 +270,145 @@ const getReleaseDate = (date) => {
 	return `${format(releaseDate, 'MMM d')}, ${format(releaseDate, 'yyyy')}`;
 }
 
-const Movie = ({movie}) => {
+const Movie = ({ movie }) => {
 	const popular = movie && parseInt(movie.popularity, 10);
 	const dispatch = useDispatch();
-	const hours = movie && Math.trunc(movie.runtime/60);
+	const hours = movie && Math.trunc(movie.runtime / 60);
 	const minutes = movie && movie.runtime % 60;
 
 
-	return(
+	return (
 		<>
-		{movie &&
-			<>
-			<Head>
-				<title>{movie.title}</title>
-				<meta name="description" content={movie.title} />
-			</Head>
-			<Wrapper
-				initial={{opacity: 0}}
-				animate={{opacity: 1}}
-				exit={{opacity: 0}}
-			>
-				<Container>
-					<BreadCrumbs>{movie.title}</BreadCrumbs>
-					<MovieContent>
-						<MovieAside >
-							<ImageWrapper
-									initial="hidden"
-									whileInView="visible"
-									viewport={{once: true}}
-									custom={1}
-									variants={animationImagePageMovie}
-								>
-								<ImageEl
-									fill
-									src={movie.poster_path ? 'https://image.tmdb.org/t/p/w500' + (movie.poster_path) : error}
-									alt={movie.title}
-								/>
-							</ImageWrapper>
-							<Rating
-								initial="hidden"
-								whileInView="visible"
-								viewport={{once: true}}
-								variants={animationContent}
-								custom={1}
-							>
-								<Stars>
-									<StarsGroup className="rating">
-										<Star type="radio" name="rating" value="1" aria-label="awfully"/>
-										<Star type="radio" name="rating" value="2" aria-label="Badly"/>
-										<Star type="radio" name="rating" value="3" aria-label="Normal"/>
-										<Star type="radio" name="rating" value="4" aria-label="Good" defaultChecked/>
-										<Star className="rating__star" type="radio" name="rating" value="5" aria-label="Great"/>
-										<RatingStarFocus className="rating__focus"></RatingStarFocus>
-									</StarsGroup>
-								</Stars>
-								<Rezult>4</Rezult>
-							</Rating>
-							<MButton
-								pink
-								button
-								magnetic
-								initial="hidden"
-								whileInView="visible"
-								viewport={{once: true}}
-								variants={animationContent}
-								custom={2}
-								onClick={() => dispatch(openPopupTrailer())}
-								borderRadius={'0'}
-								stretch="true"
-							>
-								Watch Trailer
-							</MButton>
-						</MovieAside>
-						<MovieInformation initial="hidden" whileInView="visible" viewport={{once: true}}>
-							<MTitle textAlign="left" marginBottom="3vh" variants={animationContent} custom={3} type="h3">{movie.title}</MTitle>
-							<Table>
-								{movie.production_countries[0]?.name && <TableRow variants={animationContent} custom={4}><span>Country</span> <span>{movie.production_countries[0].name}</span></TableRow>}
-								{movie.release_date !== NaN && <TableRow variants={animationContent} custom={5}><span>Release</span> <span>{getReleaseDate(movie.release_date)}</span></TableRow>}
-								{movie.runtime !== 0 && <TableRow variants={animationContent} custom={6}><span>Duration</span> <span>{hours + ':' + minutes}</span></TableRow>}
-								{popular !== NaN && <TableRow variants={animationContent} custom={7}>
-										<span>Views</span>
-										<span>{popular.toLocaleString()}</span>
-									</TableRow>
-								}
-								{
-									movie.genres !== NaN && movie.genres.length > 0 &&
-									<TableRow variants={animationContent} custom={8}>
-										<span>Genres</span> 
-										<GenresList>
-											{
-												movie.genres.map(genre => <li key={genre.id}>{genre.name}</li>)
-											}
-										</GenresList>
-									</TableRow>
-								}
-								
-							</Table>
-							<Text variants={animationContent} custom={9}>
-								{movie.overview && movie.overview}
-							</Text>
-						</MovieInformation>
-					</MovieContent>
-					<VideoWrapper 
-						initial="hidden"
-						whileInView="visible"
-						viewport={{once: true}}
-						variants={animationImagePageMovie}
+			{movie &&
+				<>
+					<Head>
+						<title>{movie.title}</title>
+						<meta name="description" content={movie.title} />
+					</Head>
+					<Wrapper
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
 					>
-						<VideoPlayer src="giXco2jaZ_4"/>
-					</VideoWrapper>
-				</Container>
-				<PopupVideo src="giXco2jaZ_4"/>
-			</Wrapper>
-			</>
-		}
+						<Container>
+							<BreadCrumbs>{movie.title}</BreadCrumbs>
+							<MovieContent>
+								<MovieAside >
+									<ImageWrapper
+										initial="hidden"
+										whileInView="visible"
+										viewport={{ once: true }}
+										custom={1}
+										variants={animationImagePageMovie}
+									>
+										<ImageEl
+											fill
+											src={movie.poster_path ? 'https://image.tmdb.org/t/p/w500' + (movie.poster_path) : error}
+											alt={movie.title}
+										/>
+									</ImageWrapper>
+									<Rating
+										initial="hidden"
+										whileInView="visible"
+										viewport={{ once: true }}
+										variants={animationContent}
+										custom={1}
+									>
+										<Stars>
+											<StarsGroup className="rating">
+												<Star type="radio" name="rating" value="1" aria-label="awfully" />
+												<Star type="radio" name="rating" value="2" aria-label="Badly" />
+												<Star type="radio" name="rating" value="3" aria-label="Normal" />
+												<Star type="radio" name="rating" value="4" aria-label="Good" defaultChecked />
+												<Star className="rating__star" type="radio" name="rating" value="5" aria-label="Great" />
+												<RatingStarFocus className="rating__focus"></RatingStarFocus>
+											</StarsGroup>
+										</Stars>
+										<Rezult>4</Rezult>
+									</Rating>
+									<MButton
+										pink
+										button
+										magnetic
+										initial="hidden"
+										whileInView="visible"
+										viewport={{ once: true }}
+										variants={animationContent}
+										custom={2}
+										onClick={() => dispatch(openPopupTrailer())}
+										borderRadius={'0'}
+										stretch="true"
+									>
+										Watch Trailer
+									</MButton>
+								</MovieAside>
+								<MovieInformation initial="hidden" whileInView="visible" viewport={{ once: true }}>
+									<MTitle textAlign="left" marginBottom="3vh" variants={animationContent} custom={3} type="h3">{movie.title}</MTitle>
+									<Table>
+										{movie.production_countries[0]?.name && <TableRow variants={animationContent} custom={4}><span>Country</span> <span>{movie.production_countries[0].name}</span></TableRow>}
+										{movie.release_date !== NaN && <TableRow variants={animationContent} custom={5}><span>Release</span> <span>{getReleaseDate(movie.release_date)}</span></TableRow>}
+										{movie.runtime !== 0 && <TableRow variants={animationContent} custom={6}><span>Duration</span> <span>{hours + ':' + minutes}</span></TableRow>}
+										{popular !== NaN && <TableRow variants={animationContent} custom={7}>
+											<span>Views</span>
+											<span>{popular.toLocaleString()}</span>
+										</TableRow>
+										}
+										{
+											movie.genres !== NaN && movie.genres.length > 0 &&
+											<TableRow variants={animationContent} custom={8}>
+												<span>Genres</span>
+												<GenresList>
+													{
+														movie.genres.map(genre => <li key={genre.id}>{genre.name}</li>)
+													}
+												</GenresList>
+											</TableRow>
+										}
+
+									</Table>
+									<Text variants={animationContent} custom={9}>
+										{movie.overview && movie.overview}
+									</Text>
+								</MovieInformation>
+							</MovieContent>
+							<VideoWrapper
+								initial="hidden"
+								whileInView="visible"
+								viewport={{ once: true }}
+								variants={animationImagePageMovie}
+							>
+								<VideoPlayer src="giXco2jaZ_4" />
+							</VideoWrapper>
+						</Container>
+						<PopupVideo src="giXco2jaZ_4" />
+					</Wrapper>
+				</>
+			}
 		</>
-	) 
+	)
 }
 
-export const getStaticPaths = async() => {
-	const {data: movies} = await axios.get(getMovie(1));
+export const getStaticPaths = async () => {
+	const { data: movies } = await axios.get(getMovie(1));
 
-	return{
+	return {
 		paths: movies.results.flatMap(movie => '/movie/' + movie.id),
 		fallback: true
 	}
 }
 
-export const getStaticProps = async ({params}) => {
-	if(!params){
-		return{
+export const getStaticProps = async ({ params }) => {
+	if (!params) {
+		return {
 			notFound: true
 		}
 	}
 
 
-	const {data: movie} = await axios.get(currentMovie(params.id));
+	const { data: movie } = await axios.get(currentMovie(params.id));
 
-	return{
-		props:{
+	return {
+		props: {
 			movie: movie
 		}
 	}

@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 
-import {SearchHeader} from './SearchHeader';
-import {Container} from '../Container';
+import { SearchHeader } from './SearchHeader';
+import { Container } from '../Container';
 
-import {Logo} from '../Logo';
-import {Burger, BurgerFixed} from '../Button';
-import {FixedMenu} from '../Menu';
-import {Menu} from '../Menu';
+import { Logo } from '../Logo';
+import { Burger, BurgerFixed } from '../Button';
+import { FixedMenu } from '../Menu';
+import { Menu } from '../Menu';
 
 
 const HeaderContent = styled.div`
@@ -21,8 +21,8 @@ const HeaderTopWrapper = styled.div`
 	background-color: var(--bg-dark);
 	padding: 20px 0;
 
-	@media (min-width: 1800px){
-		padding: 30px 0;
+	@media (min-width: 1700px){
+		padding: 25px 0;
 	}
 
 	@media (max-width: 767px){
@@ -35,10 +35,10 @@ const HeaderBody = styled.div`
 	align-items: center;
 `
 const links = [
-	{title: "Home", href: "/"},
-	{title: "About", href: "/about"},
-	{title: "Popular", href: "/popular"},
-	{title: "Contacts", href: "/contacts"}
+	{ title: "Home", href: "/" },
+	{ title: "About", href: "/about" },
+	{ title: "Popular", href: "/popular" },
+	{ title: "Contacts", href: "/contacts" }
 ]
 
 const HeaderTop = () => {
@@ -48,19 +48,19 @@ const HeaderTop = () => {
 		<HeaderTopWrapper>
 			<Container>
 				<HeaderContent>
-					<Logo/>
+					<Logo />
 					<HeaderBody>
-						<Menu links={links}/>
-						{router.route !== '/search' && <SearchHeader/>}
-						<Burger/>
-						<FixedMenu links={links}/>
-						<BurgerFixed/>
+						<Menu links={links} />
+						{router.route !== '/search' && <SearchHeader />}
+						<Burger />
+						<FixedMenu links={links} />
+						<BurgerFixed />
 					</HeaderBody>
 				</HeaderContent>
 			</Container>
 		</HeaderTopWrapper>
-		
+
 	)
 }
 
-export {HeaderTop};
+export { HeaderTop };

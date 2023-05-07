@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import styled from 'styled-components';
-import {useSelector, useDispatch} from 'react-redux';
-import {openPopupTrailer} from '../../store/popup/actions-popup';
-import {Overlay} from '../Overlay';
+import { useSelector, useDispatch } from 'react-redux';
+import { openPopupTrailer } from '../../store/popup/actions-popup';
+import { Overlay } from '../Overlay';
 import { IoCloseSharp } from "react-icons/io5";
 import VideoPlayer from '../Player/VideoPlayer';
 
@@ -27,7 +27,7 @@ const Popup = styled.div`
 		display: none;
 	}
 
-	${({openPopup}) => openPopup &&`
+	${({ openPopup }) => openPopup && `
 			pointer-events: all;
 			opacity: 1;
 			visibility: visible;
@@ -62,7 +62,7 @@ const PopupContent = styled.div`
 	padding-bottom: 30%;
 	min-height: 370px;
 
-	@media (min-width: 1800px){
+	@media (min-width: 1700px){
 		max-width: 1200px;
 		padding-bottom: 40%;
 	}
@@ -71,7 +71,7 @@ const PopupContent = styled.div`
 		min-height: 300px;
 	};
 
-	${({openPopup}) => openPopup &&`
+	${({ openPopup }) => openPopup && `
 			transform: translateY(0);
 		`
 	}
@@ -110,7 +110,7 @@ const IconClose = styled(IoCloseSharp)`
 	}
 `
 
-const PopupVideo = ({src, provider}) => {
+const PopupVideo = ({ src, provider }) => {
 	const popupOpen = useSelector(state => state.popup.trailer);
 	const dispatch = useDispatch();
 
@@ -119,12 +119,12 @@ const PopupVideo = ({src, provider}) => {
 			<PopupBody>
 				<PopupContent openPopup={popupOpen} onClick={(e) => e.stopPropagation()}>
 					<PopupClose onClick={() => dispatch(openPopupTrailer(!popupOpen))}>
-						<IconClose size="100%"/>
+						<IconClose size="100%" />
 					</PopupClose>
-					<VideoPlayer src={src} provider={provider}/>
+					<VideoPlayer src={src} provider={provider} />
 				</PopupContent>
 			</PopupBody>
-			<Overlay active={popupOpen}/>
+			<Overlay active={popupOpen} />
 		</Popup>
 	)
 }

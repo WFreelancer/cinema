@@ -71,11 +71,11 @@ const CustomLink = styled.a`
 		z-index: 2;
 	}
 
-	@media (min-width: 1800px){
-		font-size: 18px;
+	@media (min-width: 1700px){
+		font-size: 16px;
 	}
 
-	${({activeLink}) => activeLink &&`
+	${({ activeLink }) => activeLink && `
 		color: var(--white);
 		&:before{
 			display: none;
@@ -103,10 +103,10 @@ const CustomLink = styled.a`
 	}
 `
 
-const Menu = ({links}) => {
+const Menu = ({ links }) => {
 	const router = useRouter();
 
-	return(
+	return (
 		<MenuBody>
 			<MenuList>
 				{links.map((link, index) => <li key={index}><Link href={link.href} legacyBehavior><CustomLink activeLink={router.pathname === link.href ? true : false}><span>{link.title}</span></CustomLink></Link></li>)}
@@ -115,4 +115,6 @@ const Menu = ({links}) => {
 	)
 }
 
-export {Menu};
+export { Menu };
+
+

@@ -1,12 +1,12 @@
 import { forwardRef } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-import {motion} from 'framer-motion';
-import {mouseMoveAnim, mouseEnterAnim, mouseLeaveAnim} from './ButtonAnimation'
+import { motion } from 'framer-motion';
+import { mouseMoveAnim, mouseEnterAnim, mouseLeaveAnim } from './ButtonAnimation'
 
 const CustomLinkWrapper = styled.div`
 	max-width: 100%;
-	width: ${({stretch}) => stretch ? `100%` : `auto`};
+	width: ${({ stretch }) => stretch ? `100%` : `auto`};
 `
 
 const CustomLink = styled(Link)`
@@ -15,7 +15,7 @@ const CustomLink = styled(Link)`
 	border: 0;
 	outline: 0;
 	background: transparent;
-	width: ${({stretch}) => stretch ? `100%` : `auto`};
+	width: ${({ stretch }) => stretch ? `100%` : `auto`};
 `
 const LinkEl = styled.a`
 	position: relative;
@@ -37,11 +37,11 @@ const LinkEl = styled.a`
 	overflow: hidden;
 	font-family: var(--font-lexend);
 
-	width: ${({stretch}) => stretch ? `100%` : `auto`};
+	width: ${({ stretch }) => stretch ? `100%` : `auto`};
 
-	@media (min-width: 1800px){
-		min-width: 220px;
-		font-size: 1.5rem;
+	@media (min-width: 1700px){
+		min-width: 190px;
+		font-size: 1.1rem;
 	}
 
 	@media (max-width: 400px){
@@ -58,7 +58,7 @@ const LinkEl = styled.a`
 	}
 
 
-	${(props) => props.light &&`
+	${(props) => props.light && `
 		background-color: transparent;
 		border: 1px solid var(--white);
 
@@ -68,11 +68,11 @@ const LinkEl = styled.a`
 			}
 		}
 	`}
-	${(props) => props.dark &&`
+	${(props) => props.dark && `
 		background-color: var(--bg-dark);
 	`}
 
-	${(props) => props.pink &&`
+	${(props) => props.pink && `
 		background-color: var(--bg-pink);
 
 		:hover{
@@ -82,7 +82,7 @@ const LinkEl = styled.a`
 		}
 	`}
 
-	${(props) => props.orange &&`
+	${(props) => props.orange && `
 		background-color: var(--orange);
 	`}
 `
@@ -93,9 +93,9 @@ const CustomButtonWrapper = styled(motion.button)`
 	outline: 0;
 	background: transparent;
 	max-width: 100%;
-	width: ${({stretch}) => stretch ? `100%` : `auto`};
+	width: ${({ stretch }) => stretch ? `100%` : `auto`};
 
-	${({circle}) => circle &&`
+	${({ circle }) => circle && `
 		left: 150px;
 		font-size: 18px;
 		@media (max-width: 767px){
@@ -109,7 +109,7 @@ const CustomButton = styled.div`
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	border-radius: ${({borderRadius}) => borderRadius ? borderRadius : `2.125em`};
+	border-radius: ${({ borderRadius }) => borderRadius ? borderRadius : `2.125em`};
 	padding: 1.05em 0;
 	cursor: pointer;
 	user-select: none;
@@ -120,11 +120,11 @@ const CustomButton = styled.div`
 	color: var(--white);
 	box-shadow: inset 0px 0px 0px 1px var(--color-border-light);
 	overflow: hidden;
-	width: ${({stretch}) => stretch ? `100%` : `auto`};
+	width: ${({ stretch }) => stretch ? `100%` : `auto`};
 	font-family: var(--font-lexend);
-	@media (min-width: 1800px){
-		min-width: 250px;
-		font-size: 1.5rem;
+	@media (min-width: 1700px){
+		min-width: 190px;
+		font-size: 1.1rem;
 	}
 
 	@media (max-width: 400px){
@@ -141,19 +141,19 @@ const CustomButton = styled.div`
 		transition: color .3s linear .1s;
 	}
 
-	${({circle}) => circle &&`
+	${({ circle }) => circle && `
 		min-width: unset;
 		width: clamp(9em, 12vw, 11em);
 		height: clamp(9em, 12vw, 11em);
 		border-radius: 50%;
 		
-		@media (min-width: 1800px){
+		@media (min-width: 1700px){
 			min-width: unset;
 		}
 	`}
 
 
-	${({light}) => light &&`
+	${({ light }) => light && `
 		background-color: transparent;
 		border: 1px solid var(--white);
 
@@ -167,11 +167,11 @@ const CustomButton = styled.div`
 		}
 	`}
 
-	${({dark}) => dark &&`
+	${({ dark }) => dark && `
 		background-color: var(--bg-dark);
 	`}
 
-	${({pink}) => pink &&`
+	${({ pink }) => pink && `
 		background-color: var(--bg-pink);
 
 		@media (any-hover: hover){
@@ -183,7 +183,7 @@ const CustomButton = styled.div`
 		}
 	`}
 
-	${({orange}) => orange &&`
+	${({ orange }) => orange && `
 		background-color: var(--orange);
 	`}
 `
@@ -198,26 +198,26 @@ const HoverEl = styled.div`
     will-change: transform;
     transition: background-color ease-in-out .25s;
 
-	${({light}) => light &&`
+	${({ light }) => light && `
 		background-color: var(--white);
 	`}
 
-	${({dark}) => dark &&`
+	${({ dark }) => dark && `
 		background-color: var(--bg-pink);
 	`}
 
-	${({pink}) => pink &&`
+	${({ pink }) => pink && `
 		background-color: #E12538;
 	`}
 
-	${({orange}) => orange &&`
+	${({ orange }) => orange && `
 		background-color: #FFBF41;
 	`}
 `
 
 // eslint-disable-next-line
 const Button = forwardRef((props, ref) => {
-	const {children, onClick, button, magnetic = false, href = '', parallax, pink, light, dark, orange, variants, circle, custom, borderRadius, stretch} = props;
+	const { children, onClick, button, magnetic = false, href = '', parallax, pink, light, dark, orange, variants, circle, custom, borderRadius, stretch } = props;
 
 	return (
 		<>
@@ -231,26 +231,26 @@ const Button = forwardRef((props, ref) => {
 					circle={circle}
 				>
 					<CustomButton
-							onMouseEnter={(event) => mouseEnterAnim(event)}
-							onMouseMove={(event) => mouseMoveAnim(event)}
-							onMouseLeave={(event) => mouseLeaveAnim(event)}
-							data-magnetic={magnetic}
-							data-strength="30"
-							data-strength-text="35"
-							data-spead="0.3"
-							dark={dark}
-							light={light}
-							pink={pink}
-							orange={orange}
-							borderRadius={borderRadius}
-							stretch={stretch}
-							circle={circle}
-						>
+						onMouseEnter={(event) => mouseEnterAnim(event)}
+						onMouseMove={(event) => mouseMoveAnim(event)}
+						onMouseLeave={(event) => mouseLeaveAnim(event)}
+						data-magnetic={magnetic}
+						data-strength="30"
+						data-strength-text="35"
+						data-spead="0.3"
+						dark={dark}
+						light={light}
+						pink={pink}
+						orange={orange}
+						borderRadius={borderRadius}
+						stretch={stretch}
+						circle={circle}
+					>
 						<HoverEl dark={dark} light={light} pink={pink} orange={orange} data-hover-fill></HoverEl>
 						<div data-magnetic-child>
 							<div data-magnetic-text>
 								<span>{children}</span>
-							</div> 
+							</div>
 						</div>
 					</CustomButton>
 				</CustomButtonWrapper>
@@ -281,16 +281,16 @@ const Button = forwardRef((props, ref) => {
 							<div data-magnetic-child>
 								<div data-magnetic-text>
 									<span>{children}</span>
-								</div> 
+								</div>
 							</div>
 						</LinkEl>
 					</CustomLink>
 				</CustomLinkWrapper>
 			}
 		</>
-		)
+	)
 });
 
 const MButton = motion(Button);
 
-export {Button, MButton};
+export { Button, MButton };

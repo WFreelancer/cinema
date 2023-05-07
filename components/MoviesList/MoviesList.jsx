@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import {motion} from 'framer-motion'
-import {animationCard} from '../../helpers/Animations';
-import {MCard} from '../Card'
+import { motion } from 'framer-motion'
+import { animationCard } from '../../helpers/Animations';
+import { MCard } from '../Card'
 
 const MoviesBody = styled(motion.div)`
 	position: relative;
@@ -10,8 +10,8 @@ const MoviesBody = styled(motion.div)`
 	display: grid;
 	margin-bottom: 70px;
 
-	@media (min-width: 1800px){
-		grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+	@media (min-width: 1700px){
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 	}
 
 	@media (max-width: 1024px){
@@ -20,11 +20,11 @@ const MoviesBody = styled(motion.div)`
 `
 
 
-const MoviesList = ({movies = []}) => {
-	return(
+const MoviesList = ({ movies = [] }) => {
+	return (
 		<MoviesBody>
 			{movies.map((movie) => {
-				return <MCard 
+				return <MCard
 					layout
 					key={movie.id}
 					{...movie}
@@ -32,11 +32,11 @@ const MoviesList = ({movies = []}) => {
 					initial="hidden"
 					exit={{ opactiy: 0 }}
 					whileInView="visible"
-					viewport={{once: true}}
+					viewport={{ once: true }}
 				/>
 			})}
 		</MoviesBody>
 	)
 }
 
-export {MoviesList}
+export { MoviesList }
